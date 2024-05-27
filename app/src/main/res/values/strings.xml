@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">NutriSight</string>
+    <string name="vector_illustration_of_a_login_screen">vector illustration of a login screen</string>
+    <string name="vector_illustration_of_a_register_screen">vector illustration of a register screen</string>
+    <string name="login_to_your_account">Login to your account!</string>
+    <string name="create_an_account">Create an account</string>
+    <string name="login">Login</string>
+    <string name="email_address">Email address</string>
+    <string name="password">Password</string>
+    <string name="fill_in_your_details">Fill in your details</string>
+    <string name="email">Email</string>
+    <string name="register_now">Register Now!</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="username">Username</string>
 </resources>
