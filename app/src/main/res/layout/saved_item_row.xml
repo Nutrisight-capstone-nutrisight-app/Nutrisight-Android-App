@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    card_view:cardCornerRadius="25dp"
+    card_view:cardElevation="8dp"
+    android:id="@+id/card_view_item"
+    android:backgroundTint="@color/main_green"
+    android:layout_margin="16dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/img_card_saved_food"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:elevation="8dp"
+            card_view:cardCornerRadius="25dp"
+            android:backgroundTint="@color/white_black"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent"
+            card_view:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:id="@+id/img_saved_food"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/image_of_the_saved_food"
+                tools:src="@tools:sample/avatars"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/date_saved_food"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/main_green_20"
+            android:textSize="12sp"
+            android:layout_margin="12dp"
+            tools:text="12/03/2023"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            card_view:layout_constraintStart_toEndOf="@+id/img_card_saved_food"
+            card_view:layout_constraintTop_toTopOf="@+id/img_card_saved_food"
+            card_view:layout_constraintBottom_toBottomOf="@id/img_card_saved_food"
+            >
+
+            <TextView
+                android:id="@+id/name_saved_food"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Food name"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                card_view:layout_constraintTop_toTopOf="parent"
+                card_view:layout_constraintStart_toStartOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/category_saved_food"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                tools:text="Category"
+                android:textColor="@color/main_green_20"
+                android:textSize="16sp"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toBottomOf="@+id/name_saved_food"/>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="8dp"
+                android:elevation="8dp"
+                tools:backgroundTint="@color/bg_grade_b"
+                card_view:cardCornerRadius="10dp"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toBottomOf="@+id/category_saved_food"
+                >
+
+                <TextView
+                    android:id="@+id/grade_saved_food"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="B"
+                    tools:textColor="@color/text_grade_b"
+                    android:textStyle="bold"
+                    android:textSize="32sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/main_green"/>
+
+
+            </androidx.cardview.widget.CardView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        
+        <androidx.cardview.widget.CardView
+            android:layout_width="68dp"
+            android:layout_height="66dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="8dp"
+            android:elevation="8dp"
+            card_view:cardCornerRadius="20dp"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cal"
+                android:textSize="14sp"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:textColor="@color/main_green"/>
+
+            <TextView
+                android:id="@+id/cal_saved_food"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="45"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_marginTop="12dp"
+                android:layout_gravity="center"
+                android:textColor="@color/black_white"/>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
+

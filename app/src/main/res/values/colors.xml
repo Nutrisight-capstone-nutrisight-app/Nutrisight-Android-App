@@ -3,8 +3,25 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="white_black">#FFFFFFFF</color>
+    <color name="white_black_20">#FFFFFFFF</color>
     <color name="black_white">#FF000000</color>
     <color name="main_green">#097661</color>
+    <color name="main_green_20">#9CC8BF</color>
     <color name="white_20">#F4FBF8</color>
     <color name="background_color">#F4FBF8</color>
+    <!--    Grade A color-->
+    <color name="bg_grade_a">#007F49</color>
+    <color name="text_grade_a">#AFD7C7</color>
+    <!--    Grade B color-->
+    <color name="bg_grade_b">#71B44D</color>
+    <color name="text_grade_b">#D4E8C8</color>
+    <!--    Grade C color-->
+    <color name="bg_grade_c">#FFBC3C</color>
+    <color name="text_grade_c">#FFEBC1</color>
+    <!--    Grade D color-->
+    <color name="bg_grade_d">#F9742F</color>
+    <color name="text_grade_d">#FCD5BE</color>
+    <!--    Grade E color-->
+    <color name="bg_grade_e">#F23427</color>
+    <color name="text_grade_e">#FCC2BD</color>
 </resources>

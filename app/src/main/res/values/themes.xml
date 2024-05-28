@@ -18,5 +18,11 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+    <style name="Theme.ActionBar" parent="Theme.Material3.DayNight">
+        <item name="colorPrimary">@color/main_green</item>
+        <item name="fontFamily">@font/josefin_sans</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
     <style name="Theme.NutriSight" parent="Base.Theme.NutriSight" />
 </resources>

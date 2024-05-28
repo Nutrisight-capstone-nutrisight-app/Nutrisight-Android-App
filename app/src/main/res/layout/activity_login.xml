@@ -100,7 +100,7 @@
         android:translationY="4dp"
         android:stateListAnimator="@null"
         android:backgroundTint="@color/background_color"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="36dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>

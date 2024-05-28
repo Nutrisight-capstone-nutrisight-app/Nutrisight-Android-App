@@ -12,4 +12,19 @@
     <string name="register_now">Register Now!</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="username">Username</string>
+    <string name="get_started">Let\'s Get Started ➔</string>
+    <string name="skip">Skip</string>
+    <string name="next">Next</string>
+    <string name="vector_illustration_of_onboarding">vector illustration of onBoarding</string>
+    <string name="first_desc">Discover the nutritional quality of your food with ease. Let us guide you towards healthier choices.</string>
+    <string name="second_desc">Understand the nutritional content of your favorite foods. Get insights on calories, sugar, and more.</string>
+    <string name="third_desc">Our advanced machine learning algorithms evaluate and grade the nutritional value of foods, helping you make informed decisions.</string>
+    <string name="fourth_desc">Enjoy a seamless user experience with our easy-to-navigate interface. Nutrition analysis has never been this simple.</string>
+    <string name="first_title">Welcome to NutriSight!</string>
+    <string name="second_title">Detailed Food Nutrition Analysis</string>
+    <string name="third_title">Smart Nutrition Grading</string>
+    <string name="fourth_title">Simple and Intuitive Interface</string>
+    <string name="saved_food">Saved Food</string>
+    <string name="image_of_the_saved_food">Image of the saved food</string>
+    <string name="cal">Cal</string>
 </resources>

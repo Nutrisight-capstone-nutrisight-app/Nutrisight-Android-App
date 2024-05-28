@@ -19,15 +19,7 @@
         android:theme="@style/Theme.NutriSight"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activity.StartActivity"
-            android:exported="false"
-            android:theme="@style/Theme.NutriSight"/>
-        <activity
-            android:name=".ui.activity.RegisterActivity"
-            android:exported="false"
-            android:theme="@style/Theme.NutriSight"/>
-        <activity
-            android:name=".ui.activity.LoginActivity"
+            android:name=".ui.activity.OnBoardingActivity"
             android:theme="@style/Theme.AppSplash"
             android:exported="true">
             <intent-filter>
@@ -37,8 +29,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name=".ui.activity.StartActivity"
+            android:exported="false"
+            android:theme="@style/Theme.NutriSight" />
+        <activity
+            android:name=".ui.activity.RegisterActivity"
+            android:exported="false"
+            android:theme="@style/Theme.NutriSight" />
+        <activity
+            android:name=".ui.activity.LoginActivity"
             android:exported="false"
             android:theme="@style/Theme.NutriSight"/>
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:exported="false"
+            android:theme="@style/Theme.NutriSight" />
     </application>
+
 </manifest>
