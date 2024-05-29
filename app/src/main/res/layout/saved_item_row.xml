@@ -7,7 +7,7 @@
     card_view:cardCornerRadius="25dp"
     card_view:cardElevation="8dp"
     android:id="@+id/card_view_item"
-    android:backgroundTint="@color/main_green"
+    android:backgroundTint="@color/main_green_dark"
     android:layout_margin="16dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
