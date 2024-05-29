@@ -27,4 +27,19 @@
     <string name="saved_food">Saved Food</string>
     <string name="image_of_the_saved_food">Image of the saved food</string>
     <string name="cal">Cal</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="your_food_grade_average">Your Food Grade Average</string>
+    <string name="total_calories">Total calories :</string>
+    <string name="food">Food</string>
+    <string name="drink">Drink</string>
+    <string name="food_icon">food icon</string>
+    <string name="settings_button">settings button</string>
+    <string name="settings">Settings</string>
+    <string name="preferences">Preferences</string>
+    <string name="logo_of_translation">logo of translation</string>
+    <string name="language">Language</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="logo_of_arrow">logo of arrow</string>
+    <string name="logout">Log Out</string>
 </resources>

@@ -4,11 +4,18 @@
     <color name="white">#FFFFFFFF</color>
     <color name="white_black">#FFFFFFFF</color>
     <color name="white_black_20">#FFFFFFFF</color>
+    <color name="grey_text">#455A64</color>
     <color name="black_white">#FF000000</color>
     <color name="main_green">#097661</color>
     <color name="main_green_20">#9CC8BF</color>
+    <color name="main_green_30">#40A578</color>
+    <color name="main_green_dark">#097661</color>
     <color name="white_20">#F4FBF8</color>
     <color name="background_color">#F4FBF8</color>
+    <color name="bg_card_food">#B2533E</color>
+    <color name="bg_card_drink">#7BC9FF</color>"
+    <color name="red">#E0404D</color>
+    <color name="red_20">#FEEFEE</color>
     <!--    Grade A color-->
     <color name="bg_grade_a">#007F49</color>
     <color name="text_grade_a">#AFD7C7</color>

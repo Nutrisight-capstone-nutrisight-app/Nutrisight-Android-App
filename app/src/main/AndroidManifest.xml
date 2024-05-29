@@ -19,9 +19,12 @@
         android:theme="@style/Theme.NutriSight"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activity.SettingsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.OnBoardingActivity"
-            android:theme="@style/Theme.AppSplash"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.AppSplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,7 +42,7 @@
         <activity
             android:name=".ui.activity.LoginActivity"
             android:exported="false"
-            android:theme="@style/Theme.NutriSight"/>
+            android:theme="@style/Theme.NutriSight" />
         <activity
             android:name=".ui.activity.MainActivity"
             android:exported="false"
