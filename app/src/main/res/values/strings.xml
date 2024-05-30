@@ -42,4 +42,5 @@
     <string name="dark_mode">Dark Mode</string>
     <string name="logo_of_arrow">logo of arrow</string>
     <string name="logout">Log Out</string>
+    <string name="searchbar_hint">Masukkan kata</string>
 </resources>

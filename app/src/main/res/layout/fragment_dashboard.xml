@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     tools:context="com.DashboardFragment"
-    android:background="@color/background_color">
+    android:background="@color/background_color"
+    >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -53,6 +54,7 @@
                 android:background="@color/main_green_dark"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
+
                 >
 
                 <androidx.cardview.widget.CardView
@@ -135,13 +137,13 @@
                             android:id="@+id/grade_saved_food"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            tools:text="B"
-                            tools:textColor="@color/text_grade_b"
-                            android:textStyle="bold"
-                            android:textSize="32sp"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            android:textColor="@color/main_green"/>
+                            android:textColor="@color/main_green"
+                            android:textSize="32sp"
+                            android:textStyle="bold"
+                            tools:text="B"
+                            tools:textColor="@color/text_grade_b" />
 
 
                     </androidx.cardview.widget.CardView>
@@ -225,7 +227,6 @@
                 android:text="Article"
                 android:textSize="20sp"
                 android:layout_marginStart="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 />
 
 
