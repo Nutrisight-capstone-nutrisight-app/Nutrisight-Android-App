@@ -4,4 +4,12 @@
         <item name="colorPrimary">@color/main_green</item>
         <item name="fontFamily">@font/josefin_sans</item>
     </style>
+
+    <style name="Theme.Material.Main" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/main_green</item>
+        <item name="fontFamily">@font/josefin_sans</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="Theme.NutriSight" parent="Base.Theme.NutriSight" />
 </resources>
