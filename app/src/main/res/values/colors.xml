@@ -16,6 +16,8 @@
     <color name="bg_card_drink">#7BC9FF</color>"
     <color name="red">#E0404D</color>
     <color name="red_20">#FEEFEE</color>
+    <color name="custom_thumb_color">#FFFFFF</color>
+
     <!--    Grade A color-->
     <color name="bg_grade_a">#007F49</color>
     <color name="text_grade_a">#AFD7C7</color>

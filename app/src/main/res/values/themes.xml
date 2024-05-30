@@ -4,6 +4,14 @@
         <item name="colorPrimary">@color/main_green</item>
         <item name="fontFamily">@font/josefin_sans</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="materialSwitchStyle">@style/Widget.Custom.MaterialSwitch</item>
+    </style>
+    
+    <style name="Theme.Material.Main" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/main_green</item>
+        <item name="fontFamily">@font/josefin_sans</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="materialSwitchStyle">@style/Widget.Custom.MaterialSwitch</item>
     </style>
 
     <style name="Theme.AppSplash" parent="Theme.SplashScreen">

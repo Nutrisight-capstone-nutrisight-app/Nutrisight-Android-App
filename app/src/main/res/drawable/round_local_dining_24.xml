@@ -1,5 +1,5 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:height="41dp" android:tint="#B2533E"
+    android:height="41dp" android:tint="@color/bg_card_food"
     android:viewportHeight="24"
     android:viewportWidth="24" android:width="41dp">
       
