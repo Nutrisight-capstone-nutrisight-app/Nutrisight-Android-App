@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background_color"
+    android:theme="@style/Theme.Material.Main"
+    tools:context=".ui.fragment.ScanBottomSheet">
+
+    <TextView
+        android:id="@+id/tv_choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pick_a_method"
+        android:textColor="@color/black_white"
+        android:layout_margin="16dp"
+        android:textStyle="bold"
+        android:textSize="32sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <ImageButton
+        android:id="@+id/btn_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/logo_of_cancel"
+        android:src="@drawable/rounded_cancel_24"
+        android:backgroundTint="@android:color/transparent"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_choose"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_choose"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_camera"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:text="@string/camera"
+        app:cornerRadius="10dp"
+        android:padding="8dp"
+        android:textAllCaps="false"
+        app:iconSize="56dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginBottom="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="4dp"
+        android:textSize="20sp"
+        app:iconGravity="top"
+        android:textColor="@color/white"
+        app:iconTint="@color/white"
+        app:icon="@drawable/round_camera_alt_24"
+        app:layout_constraintTop_toBottomOf="@+id/tv_choose"
+        app:layout_constraintEnd_toStartOf="@+id/btn_gallery"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_gallery"
+        android:layout_width="0dp"
+        app:cornerRadius="10dp"
+        android:padding="8dp"
+        android:layout_height="120dp"
+        android:text="@string/gallery"
+        android:layout_marginEnd="16dp"
+        android:textSize="20sp"
+        app:iconGravity="top"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:iconTint="@color/white"
+        app:icon="@drawable/rounded_image_search_24"
+        app:iconSize="56dp"
+        app:layout_constraintTop_toTopOf="@+id/btn_camera"
+        app:layout_constraintStart_toEndOf="@+id/btn_camera"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_camera"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

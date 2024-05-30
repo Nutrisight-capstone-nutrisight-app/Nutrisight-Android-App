@@ -8,4 +8,16 @@
         <item name="cornerSizeBottomRight">30dp</item>
         <item name="cornerSizeBottomLeft">30dp</item>
     </style>
+
+    <style name="ShapeAppearanceOverlay.MaterialCardView.Cut.Bottom" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">30dp</item>
+        <item name="cornerSizeTopLeft">30dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+
+    <style name="Widget.Custom.MaterialSwitch" parent="Widget.Material3.CompoundButton.MaterialSwitch">
+        <item name="thumbTint">@color/custom_thumb_color</item>
+    </style>
 </resources>

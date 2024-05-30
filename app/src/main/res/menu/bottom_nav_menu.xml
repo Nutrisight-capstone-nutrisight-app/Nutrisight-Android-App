@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/round_home_24"
+        android:title="@string/home"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/nav_food"
+        android:icon="@drawable/round_food_bank_24"
+        android:title="@string/food"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/placeholder"
+        android:title=""/>
+
+    <item
+        android:id="@+id/nav_saved"
+        android:icon="@drawable/round_bookmark_24"
+        android:title="@string/saved"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/round_person_24"
+        android:title="@string/profile"
+        app:showAsAction="always"/>
+
+
+</menu>
