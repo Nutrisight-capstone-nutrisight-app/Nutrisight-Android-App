@@ -18,3 +18,11 @@ NutriSight is an innovative food nutrition grading app that leverages machine le
 ```bash
 git clone git@github.com:username/NutriSight.git
 cd NutriSight
+```
+
+## Mobile Dev Team Member
+| Bangkit ID  | Name  | LinkedIn |
+|------------|------------|------------| 
+| A117D4KY4597| Taffan Muhammad Rizqi|[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://www.linkedin.com/in/taffan-muhammad-rizqi/)
+| A132D4KY3384| Alif Nur Samudra|[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://www.linkedin.com/in/alif-nur-samudra-54b4b624b/)
+
