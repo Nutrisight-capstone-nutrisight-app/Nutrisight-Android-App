@@ -1,5 +1,6 @@
 package com.capstone.nutrisight.ui.activity
 
+import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
@@ -13,6 +14,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.capstone.nutrisight.R
 import com.capstone.nutrisight.databinding.ActivitySettingsBinding
+import com.capstone.nutrisight.databinding.DialogLanguageBinding
+import com.capstone.nutrisight.databinding.DialogLogoutBinding
+import java.util.Locale
 
 class SettingsActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySettingsBinding
@@ -31,14 +35,69 @@ class SettingsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnLogout.setOnClickListener {
-            val intent = Intent(this@SettingsActivity, LoginActivity::class.java)
-            Log.d("SettingsActivity", "Logout button clicked")
-            startActivity(intent)
-            finish()
+            showLogoutDialog()
+        }
+
+        binding.btnTranslate.setOnClickListener {
+            showLanguageDialog()
         }
 
         onBackPressedCallback()
 
+    }
+
+    private fun showLogoutDialog() {
+        val dialog = Dialog(this)
+        val binding: DialogLogoutBinding = DialogLogoutBinding.inflate(layoutInflater)
+        dialog.setContentView(binding.root)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.setCancelable(true)
+
+        binding.btnLogout.setOnClickListener {
+            dialog.dismiss()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        binding.btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    private fun showLanguageDialog() {
+        val dialog = Dialog(this)
+        val binding: DialogLanguageBinding = DialogLanguageBinding.inflate(layoutInflater)
+        dialog.setContentView(binding.root)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.setCancelable(true)
+
+        binding.btnConfirm.setOnClickListener {
+            val id = binding.radioLanguage.checkedRadioButtonId
+            when (id) {
+                R.id.radio_english -> setLocale("en")
+                R.id.radio_indonesia -> setLocale("in")
+                R.id.radio_japanese -> setLocale("ja")
+            }
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    private fun setLocale(lang: String) {
+        val locale = Locale(lang)
+        Locale.setDefault(locale)
+        val resources = resources
+        val config = resources.configuration
+        config.setLocale(locale)
+        resources.updateConfiguration(config, resources.displayMetrics)
+
+        val intent = intent
+        finish()
+        startActivity(intent)
     }
 
     private fun onBackPressedCallback() {

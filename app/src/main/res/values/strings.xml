@@ -55,4 +55,15 @@
     <string name="gallery">Gallery</string>
     <string name="article_image">image of the article</string>
     <string name="product">Product</string>
+    <string name="ok">OK</string>
+    <string name="registration_successful">Your account has successfully registered.</string>
+    <string name="registration_failed">Registration Failed, Please try again</string>
+    <string name="try_again">Try again</string>
+    <string name="confirm">Confirm</string>
+    <string name="indonesia">Indonesian</string>
+    <string name="english">English</string>
+    <string name="confirmation">Confirmation</string>
+    <string name="are_you_sure_you_want_to_logout_from_this_account">Are you sure you want to logout from this account?</string>
+    <string name="cancel">Cancel</string>
+    <string name="Japanese">Japanese</string>
 </resources>

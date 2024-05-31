@@ -22,6 +22,7 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_below="@id/tv_product_list"
         android:id="@+id/card_view_profile"
+        app:cardCornerRadius="30dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

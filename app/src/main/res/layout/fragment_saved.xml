@@ -9,11 +9,12 @@
 
     <TextView
         android:id="@+id/tv_saved"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/saved_food"
         android:textColor="@color/black_white"
         android:textSize="32sp"
+        android:maxWidth="300dp"
         android:textStyle="bold"
         android:layout_marginTop="48dp"
         android:gravity="center"
