@@ -60,6 +60,7 @@ dependencies {
     implementation(libs.datastore.preferences)
     implementation(libs.play.services.base)
     implementation(libs.splashscreen)
+    implementation(libs.lottie)
     ksp(libs.room.compiler)
     implementation(libs.coroutines.core)
     implementation(libs.coroutines.android)

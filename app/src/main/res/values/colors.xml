@@ -5,6 +5,7 @@
     <color name="white_black">#FFFFFFFF</color>
     <color name="white_black_20">#FFFFFFFF</color>
     <color name="grey_text">#455A64</color>
+    <color name="grey_text_20">#80455A64</color>
     <color name="black_white">#FF000000</color>
     <color name="main_green">#097661</color>
     <color name="main_green_20">#9CC8BF</color>

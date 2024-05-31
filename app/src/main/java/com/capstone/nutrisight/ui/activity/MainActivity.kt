@@ -6,8 +6,12 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import android.Manifest
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.capstone.nutrisight.R
 import com.capstone.nutrisight.databinding.ActivityMainBinding
@@ -20,6 +24,10 @@ import com.capstone.nutrisight.ui.fragment.ScanBottomSheet
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var scanBottomSheet: ScanBottomSheet
+
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -42,6 +50,10 @@ class MainActivity : AppCompatActivity() {
         loadFragment(DashboardFragment())
 
         setupBottomNavigation()
+
+
+
+
 
 
     }
@@ -68,4 +80,8 @@ class MainActivity : AppCompatActivity() {
         transaction.replace(R.id.container, fragment)
         transaction.commit()
     }
+
+
+
+
 }
