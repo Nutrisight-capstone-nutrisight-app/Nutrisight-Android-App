@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragment.FoodFragment"
     android:background="@color/main_green_dark">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/list_produk"
+        android:id="@+id/tv_product_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Product"
+        android:text="@string/product"
         android:textStyle="bold"
-        android:textSize="50dp"
+        android:layout_margin="32dp"
+        android:textSize="32sp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="70dp"
         android:textColor="@color/white"
         />
     <com.google.android.material.card.MaterialCardView
-        android:layout_below="@id/list_produk"
+        android:layout_below="@id/tv_product_list"
         android:id="@+id/card_view_profile"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/saved_item_row"
-        />
+        android:layout_height="match_parent">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:listitem="@layout/food_item_row"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </com.google.android.material.card.MaterialCardView>
-</RelativeLayout>
 
-</FrameLayout>
+
+</RelativeLayout>

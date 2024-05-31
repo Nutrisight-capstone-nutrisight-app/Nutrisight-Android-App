@@ -54,4 +54,5 @@
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
     <string name="article_image">image of the article</string>
+    <string name="product">Product</string>
 </resources>
