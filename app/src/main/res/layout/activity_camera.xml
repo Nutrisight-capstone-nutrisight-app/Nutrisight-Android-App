@@ -17,8 +17,10 @@
         android:layout_width="75dp"
         android:layout_height="75dp"
         app:cornerRadius="15dp"
+        android:text="@string/camera"
         app:icon="@drawable/round_camera_alt_24"
         app:iconSize="32dp"
+        app:iconTint="@color/white"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:layout_marginBottom="16dp"
@@ -28,6 +30,18 @@
         app:layout_constraintStart_toStartOf="parent"
 
         />
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progressIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -33,6 +33,8 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        mlModelBinding = true
+        buildConfig = true
     }
     kotlinOptions {
         jvmTarget = "1.8"
@@ -61,6 +63,10 @@ dependencies {
     implementation(libs.play.services.base)
     implementation(libs.splashscreen)
     implementation(libs.lottie)
+    implementation(libs.tensorflow.lite.support)
+    implementation(libs.tensorflow.lite.metadata)
+    implementation(libs.tensorflow.lite.gpu)
+    implementation(libs.tensorflow.lite.task.vision)
     ksp(libs.room.compiler)
     implementation(libs.coroutines.core)
     implementation(libs.coroutines.android)

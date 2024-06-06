@@ -1,11 +1,14 @@
 package com.capstone.nutrisight.ui.activity
 
-import android.graphics.Color
+import android.content.Intent
+import android.net.Uri
+import com.capstone.nutrisight.BuildConfig
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.OrientationEventListener
 import android.view.Surface
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
@@ -17,13 +20,16 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.capstone.nutrisight.R
+import androidx.core.content.FileProvider
 import com.capstone.nutrisight.databinding.ActivityCameraBinding
+import com.capstone.nutrisight.helper.ImageClassifierHelper
 import com.capstone.nutrisight.utils.createCustomTempFile
+import org.tensorflow.lite.task.vision.classifier.Classifications
+import java.io.File
+import java.text.NumberFormat
 
 class CameraActivity : AppCompatActivity() {
+    private lateinit var imageClassifierHelper: ImageClassifierHelper
     private lateinit var binding: ActivityCameraBinding
     private var imageCapture: ImageCapture? = null
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
@@ -31,6 +37,10 @@ class CameraActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.captureImage.setOnClickListener {
+            takePhoto()
+        }
 
 
 
@@ -78,32 +88,73 @@ class CameraActivity : AppCompatActivity() {
         val imageCapture = imageCapture ?: return
 
         val photoFile = createCustomTempFile(application)
+        val photoUri = FileProvider.getUriForFile(
+            this,
+            "${BuildConfig.APPLICATION_ID}.provider",
+            photoFile
+        )
 
         val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
+
+        binding.progressIndicator.visibility = View.VISIBLE
 
         imageCapture.takePicture(
             outputOptions,
             ContextCompat.getMainExecutor(this),
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-                    Toast.makeText(
-                        this@CameraActivity,
-                        "Berhasil mengambil gambar.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    analyzeImage(photoUri)
                 }
 
                 override fun onError(exception: ImageCaptureException) {
                     Toast.makeText(
                         this@CameraActivity,
-                        "Gagal mengambil gambar.",
+                        "Failed to take image.",
                         Toast.LENGTH_SHORT
                     ).show()
+                    binding.progressIndicator.visibility = View.VISIBLE
                     Log.e(TAG, "onError: ${exception.message}")
                 }
-
             }
         )
+    }
+
+    private fun analyzeImage(photoUri: Uri) {
+        imageClassifierHelper = ImageClassifierHelper(
+            context = this,
+            classifierListener = object : ImageClassifierHelper.ClassifierListener {
+                override fun onError(error: String) {
+                    runOnUiThread {
+                        Toast.makeText(this@CameraActivity, error, Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onResults(results: List<Classifications>?, inferenceTime: Long) {
+                    runOnUiThread {
+                        results?.let { it ->
+                            if (it.isNotEmpty() && it[0].categories.isNotEmpty()) {
+                                println(it)
+                                val sortedCategories =
+                                    it[0].categories.sortedByDescending { it?.score }
+                                val displayResult =
+                                    sortedCategories.joinToString("\n") {
+                                        it.label + NumberFormat.getPercentInstance()
+                                            .format(it.score).trim()
+                                    }
+                                moveToResult(displayResult)
+                            }
+                        }
+                    }
+                }
+            }
+        )
+        imageClassifierHelper.classifyStaticImage(photoUri)
+    }
+
+    private fun moveToResult(displayResult: String) {
+        val intent = Intent(this@CameraActivity, ResultActivity::class.java)
+        intent.putExtra(ResultActivity.EXTRA_RESULT, displayResult)
+        startActivity(intent)
     }
 
     private fun hideSystemUI() {
