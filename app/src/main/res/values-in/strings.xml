@@ -41,7 +41,7 @@
     <string name="logo_of_arrow">logo panah</string>
     <string name="logout">Keluar</string>
     <string name="start_scan_your_food_now">Mulai scan makanan Anda sekarang!</string>
-    <string name="welcome">Selamat Datang</string>
+    <string name="welcome">"Selamat Datang, "</string>
     <string name="your_average">Rata-rata Anda</string>
     <string name="articles">Artikel</string>
     <string name="recommended_food">Makanan yang Direkomendasikan</string>

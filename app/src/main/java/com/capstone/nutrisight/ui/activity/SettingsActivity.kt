@@ -1,25 +1,40 @@
 package com.capstone.nutrisight.ui.activity
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.WindowManager
+import android.widget.CompoundButton
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
 import com.capstone.nutrisight.R
 import com.capstone.nutrisight.databinding.ActivitySettingsBinding
 import com.capstone.nutrisight.databinding.DialogLanguageBinding
 import com.capstone.nutrisight.databinding.DialogLogoutBinding
+import com.capstone.nutrisight.preferences.SettingsPreferences
+import com.capstone.nutrisight.preferences.dataStore
+import com.capstone.nutrisight.ui.model.SettingViewModel
+import com.capstone.nutrisight.ui.model.SettingViewModelFactory
 import java.util.Locale
 
 class SettingsActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySettingsBinding
+    private val settingViewModel: SettingViewModel by viewModels<SettingViewModel>() {
+        SettingViewModelFactory.getInstance(getSettingPreferences(this))
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySettingsBinding.inflate(layoutInflater)
@@ -34,6 +49,8 @@ class SettingsActivity : AppCompatActivity() {
         }
         setContentView(binding.root)
 
+        getSettingPreferences(applicationContext)
+
         binding.btnLogout.setOnClickListener {
             showLogoutDialog()
         }
@@ -42,8 +59,33 @@ class SettingsActivity : AppCompatActivity() {
             showLanguageDialog()
         }
 
+        settingViewModel.getThemeSettings().observe(this) {isDarkModeActive: Boolean ->
+            if (isDarkModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                binding.switchDarkmode.isChecked = true
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                binding.switchDarkmode.isChecked = false
+            }
+        }
+
+        settingViewModel.getLanguage().observe(this) {language ->
+            setLocale(language)
+        }
+
+
+
+        binding.switchDarkmode.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
+            settingViewModel.saveThemeSetting(isChecked)
+        }
+
+
         onBackPressedCallback()
 
+    }
+
+    private fun getSettingPreferences(context: Context): SettingsPreferences {
+        return SettingsPreferences.getInstance(context.dataStore)
     }
 
     private fun showLogoutDialog() {
@@ -74,12 +116,32 @@ class SettingsActivity : AppCompatActivity() {
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.setCancelable(true)
 
+
+
         binding.btnConfirm.setOnClickListener {
             val id = binding.radioLanguage.checkedRadioButtonId
             when (id) {
-                R.id.radio_english -> setLocale("en")
-                R.id.radio_indonesia -> setLocale("in")
-                R.id.radio_japanese -> setLocale("ja")
+                R.id.radio_english -> {
+                    setLocale("en")
+                    settingViewModel.saveLanguage("en")
+                    val intent = intent
+                    finish()
+                    startActivity(intent)
+                }
+                R.id.radio_indonesia -> {
+                    setLocale("in")
+                    settingViewModel.saveLanguage("in")
+                    val intent = intent
+                    finish()
+                    startActivity(intent)
+                }
+                R.id.radio_japanese -> {
+                    setLocale("ja")
+                    settingViewModel.saveLanguage("ja")
+                    val intent = intent
+                    finish()
+                    startActivity(intent)
+                }
             }
             dialog.dismiss()
         }
@@ -94,10 +156,6 @@ class SettingsActivity : AppCompatActivity() {
         val config = resources.configuration
         config.setLocale(locale)
         resources.updateConfiguration(config, resources.displayMetrics)
-
-        val intent = intent
-        finish()
-        startActivity(intent)
     }
 
     private fun onBackPressedCallback() {

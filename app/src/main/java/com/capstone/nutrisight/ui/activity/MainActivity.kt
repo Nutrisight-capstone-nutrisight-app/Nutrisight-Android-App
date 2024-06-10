@@ -11,8 +11,10 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.capstone.nutrisight.R
 import com.capstone.nutrisight.databinding.ActivityMainBinding
 import com.capstone.nutrisight.ui.fragment.DashboardFragment
@@ -20,11 +22,15 @@ import com.capstone.nutrisight.ui.fragment.FoodFragment
 import com.capstone.nutrisight.ui.fragment.ProfileFragment
 import com.capstone.nutrisight.ui.fragment.SavedFragment
 import com.capstone.nutrisight.ui.fragment.ScanBottomSheet
+import com.capstone.nutrisight.ui.model.ArticleViewModel
+import com.capstone.nutrisight.ui.model.MainViewModelFactory
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var scanBottomSheet: ScanBottomSheet
-
+    private val articleViewModel: ArticleViewModel by viewModels<ArticleViewModel>() {
+        MainViewModelFactory.getInstance()
+    }
 
 
 
@@ -50,12 +56,6 @@ class MainActivity : AppCompatActivity() {
         loadFragment(DashboardFragment())
 
         setupBottomNavigation()
-
-
-
-
-
-
     }
 
     private fun setupBottomNavigation() {

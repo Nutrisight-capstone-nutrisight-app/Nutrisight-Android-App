@@ -41,7 +41,7 @@
     <string name="logo_of_arrow">logo of arrow</string>
     <string name="logout">Log Out</string>
     <string name="start_scan_your_food_now">Start scan your food now!</string>
-    <string name="welcome">Welcome</string>
+    <string name="welcome">"Welcome, "</string>
     <string name="your_average">Your Average</string>
     <string name="articles">Articles</string>
     <string name="recommended_food">Recommended Food</string>

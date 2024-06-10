@@ -1,5 +1,6 @@
 package com.capstone.nutrisight.ui.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -10,15 +11,22 @@ import android.view.animation.Animation
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager.widget.ViewPager
 import com.capstone.nutrisight.R
 import com.capstone.nutrisight.databinding.ActivityOnBoardingBinding
+import com.capstone.nutrisight.preferences.SettingsPreferences
+import com.capstone.nutrisight.preferences.dataStore
 import com.capstone.nutrisight.ui.adapter.SliderAdapter
+import com.capstone.nutrisight.ui.model.SettingViewModel
+import com.capstone.nutrisight.ui.model.SettingViewModelFactory
 import com.google.android.material.animation.AnimationUtils
+import java.util.Locale
 
 class OnBoardingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOnBoardingBinding
@@ -28,6 +36,9 @@ class OnBoardingActivity : AppCompatActivity() {
     private lateinit var dots: Array<TextView?>
     private var showAnimation = false
     private var animation: Animation? = null
+    private val settingViewModel: SettingViewModel by viewModels<SettingViewModel>() {
+        SettingViewModelFactory.getInstance(getSettingPreferences(this))
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -127,7 +138,28 @@ class OnBoardingActivity : AppCompatActivity() {
             finish()
         }
 
+        settingViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
+            if (isDarkModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
 
+        settingViewModel.getLanguage().observe(this) { language: String ->
+            setLocale(language)
+        }
+
+
+    }
+
+    private fun setLocale(lang: String) {
+        val locale = Locale(lang)
+        Locale.setDefault(locale)
+        val resources = resources
+        val config = resources.configuration
+        config.setLocale(locale)
+        resources.updateConfiguration(config, resources.displayMetrics)
     }
 
     private fun addDots(position: Int) {
@@ -158,5 +190,9 @@ class OnBoardingActivity : AppCompatActivity() {
                 dots[i]?.setTextColor(getColor(R.color.black_white))
             }
         }
+    }
+
+    private fun getSettingPreferences(context: Context): SettingsPreferences {
+        return SettingsPreferences.getInstance(context.dataStore)
     }
 }
