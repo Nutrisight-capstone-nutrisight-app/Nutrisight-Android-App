@@ -24,8 +24,9 @@ import com.capstone.nutrisight.preferences.SettingsPreferences
 import com.capstone.nutrisight.preferences.dataStore
 import com.capstone.nutrisight.ui.adapter.SliderAdapter
 import com.capstone.nutrisight.ui.model.SettingViewModel
-import com.capstone.nutrisight.ui.model.ViewModelFactory
+import com.capstone.nutrisight.ui.model.SettingViewModelFactory
 import com.google.android.material.animation.AnimationUtils
+import java.util.Locale
 
 class OnBoardingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOnBoardingBinding
@@ -36,7 +37,7 @@ class OnBoardingActivity : AppCompatActivity() {
     private var showAnimation = false
     private var animation: Animation? = null
     private val settingViewModel: SettingViewModel by viewModels<SettingViewModel>() {
-        ViewModelFactory.getInstance(getSettingPreferences(this))
+        SettingViewModelFactory.getInstance(getSettingPreferences(this))
     }
 
 
@@ -145,7 +146,20 @@ class OnBoardingActivity : AppCompatActivity() {
             }
         }
 
+        settingViewModel.getLanguage().observe(this) { language: String ->
+            setLocale(language)
+        }
 
+
+    }
+
+    private fun setLocale(lang: String) {
+        val locale = Locale(lang)
+        Locale.setDefault(locale)
+        val resources = resources
+        val config = resources.configuration
+        config.setLocale(locale)
+        resources.updateConfiguration(config, resources.displayMetrics)
     }
 
     private fun addDots(position: Int) {

@@ -25,13 +25,13 @@ import com.capstone.nutrisight.databinding.DialogLogoutBinding
 import com.capstone.nutrisight.preferences.SettingsPreferences
 import com.capstone.nutrisight.preferences.dataStore
 import com.capstone.nutrisight.ui.model.SettingViewModel
-import com.capstone.nutrisight.ui.model.ViewModelFactory
+import com.capstone.nutrisight.ui.model.SettingViewModelFactory
 import java.util.Locale
 
 class SettingsActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySettingsBinding
     private val settingViewModel: SettingViewModel by viewModels<SettingViewModel>() {
-        ViewModelFactory.getInstance(getSettingPreferences(this))
+        SettingViewModelFactory.getInstance(getSettingPreferences(this))
     }
 
 
@@ -68,6 +68,12 @@ class SettingsActivity : AppCompatActivity() {
                 binding.switchDarkmode.isChecked = false
             }
         }
+
+        settingViewModel.getLanguage().observe(this) {language ->
+            setLocale(language)
+        }
+
+
 
         binding.switchDarkmode.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
             settingViewModel.saveThemeSetting(isChecked)
@@ -110,12 +116,32 @@ class SettingsActivity : AppCompatActivity() {
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.setCancelable(true)
 
+
+
         binding.btnConfirm.setOnClickListener {
             val id = binding.radioLanguage.checkedRadioButtonId
             when (id) {
-                R.id.radio_english -> setLocale("en")
-                R.id.radio_indonesia -> setLocale("in")
-                R.id.radio_japanese -> setLocale("ja")
+                R.id.radio_english -> {
+                    setLocale("en")
+                    settingViewModel.saveLanguage("en")
+                    val intent = intent
+                    finish()
+                    startActivity(intent)
+                }
+                R.id.radio_indonesia -> {
+                    setLocale("in")
+                    settingViewModel.saveLanguage("in")
+                    val intent = intent
+                    finish()
+                    startActivity(intent)
+                }
+                R.id.radio_japanese -> {
+                    setLocale("ja")
+                    settingViewModel.saveLanguage("ja")
+                    val intent = intent
+                    finish()
+                    startActivity(intent)
+                }
             }
             dialog.dismiss()
         }
@@ -130,10 +156,6 @@ class SettingsActivity : AppCompatActivity() {
         val config = resources.configuration
         config.setLocale(locale)
         resources.updateConfiguration(config, resources.displayMetrics)
-
-        val intent = intent
-        finish()
-        startActivity(intent)
     }
 
     private fun onBackPressedCallback() {

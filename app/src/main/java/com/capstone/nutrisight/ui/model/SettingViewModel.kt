@@ -19,4 +19,14 @@ class SettingViewModel(private val pref: SettingsPreferences): ViewModel() {
         }
     }
 
+    fun getLanguage(): LiveData<String> {
+        return pref.getLanguageSetting().asLiveData()
+    }
+
+    fun saveLanguage(language: String) {
+        viewModelScope.launch {
+            pref.saveLanguageSetting(language)
+        }
+    }
+
 }

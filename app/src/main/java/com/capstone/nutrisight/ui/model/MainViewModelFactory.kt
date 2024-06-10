@@ -4,11 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.nutrisight.preferences.SettingsPreferences
 
-class ViewModelFactory(private val pref: SettingsPreferences): ViewModelProvider.NewInstanceFactory() {
+class MainViewModelFactory(): ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return if (modelClass.isAssignableFrom(SettingViewModel::class.java)) {
-            SettingViewModel(pref) as T
+        return if (modelClass.isAssignableFrom(ArticleViewModel::class.java)) {
+            ArticleViewModel() as T
         } else {
             throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
@@ -16,15 +16,15 @@ class ViewModelFactory(private val pref: SettingsPreferences): ViewModelProvider
 
     companion object {
         @Volatile
-        private var INSTANCE: ViewModelFactory? = null
+        private var INSTANCE: MainViewModelFactory? = null
         @JvmStatic
-        fun getInstance(pref: SettingsPreferences): ViewModelFactory {
+        fun getInstance(): MainViewModelFactory {
             if (INSTANCE == null) {
-                synchronized(ViewModelFactory::class.java) {
-                    INSTANCE = ViewModelFactory(pref)
+                synchronized(SettingViewModelFactory::class.java) {
+                    INSTANCE = MainViewModelFactory()
                 }
             }
-            return INSTANCE as ViewModelFactory
+            return INSTANCE as MainViewModelFactory
         }
     }
 

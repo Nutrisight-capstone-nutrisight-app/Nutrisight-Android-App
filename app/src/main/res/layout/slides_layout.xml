@@ -12,9 +12,11 @@
         android:layout_marginTop="20dp"
         android:contentDescription="@string/vector_illustration_of_onboarding"
         tools:src="@tools:sample/avatars"
+        android:layout_marginBottom="64dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         />
 
     <TextView
