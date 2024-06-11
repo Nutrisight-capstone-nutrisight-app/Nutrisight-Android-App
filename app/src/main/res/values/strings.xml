@@ -66,4 +66,15 @@
     <string name="are_you_sure_you_want_to_logout_from_this_account">Are you sure you want to logout from this account?</string>
     <string name="cancel">Cancel</string>
     <string name="Japanese">Japanese</string>
+    <string name="nutritional_information">Nutritional Information</string>
+    <string name="serving_size">Serving Size</string>
+    <string name="energy">Energy</string>
+    <string name="fat">Fat</string>
+    <string name="saturated_fat">Saturated Fat</string>
+    <string name="protein">Protein</string>
+    <string name="carbs">Carbs</string>
+    <string name="sugar">Sugar</string>
+    <string name="natrium">Natrium</string>
+    <string name="salt">Salt</string>
+    <string name="save">Save</string>
 </resources>

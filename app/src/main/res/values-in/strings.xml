@@ -66,4 +66,15 @@
     <string name="are_you_sure_you_want_to_logout_from_this_account">Apakah anda yakin ingin keluar dari \n akun ini?</string>
     <string name="cancel">Batal</string>
     <string name="Japanese">Jepang</string>
+    <string name="nutritional_information">Informasi Gizi</string>
+    <string name="serving_size">Ukuran Porsi</string>
+    <string name="energy">Energi</string>
+    <string name="fat">Lemak</string>
+    <string name="saturated_fat">Lemak Jenuh</string>
+    <string name="protein">Protein</string>
+    <string name="carbs">Karbohidrat</string>
+    <string name="sugar">Gula</string>
+    <string name="natrium">Natrium</string>
+    <string name="salt">Garam</string>
+
 </resources>

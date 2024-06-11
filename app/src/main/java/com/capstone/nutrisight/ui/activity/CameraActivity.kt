@@ -1,5 +1,6 @@
 package com.capstone.nutrisight.ui.activity
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -32,8 +33,11 @@ class CameraActivity : AppCompatActivity() {
         binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
+        binding.captureImage.setOnClickListener {
+            val intent = Intent(this@CameraActivity, ResultActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     public override fun onResume() {
