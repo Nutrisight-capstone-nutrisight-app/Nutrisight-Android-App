@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var scanBottomSheet: ScanBottomSheet
     private val articleViewModel: ArticleViewModel by viewModels<ArticleViewModel>() {
-        MainViewModelFactory.getInstance()
+        MainViewModelFactory.getInstance(applicationContext)
     }
 
 

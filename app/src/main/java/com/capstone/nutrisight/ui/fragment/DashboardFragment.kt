@@ -12,7 +12,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.nutrisight.R
-import com.capstone.nutrisight.data.api.NEWS_API_KEY
+import com.capstone.nutrisight.data.api.ApiConstant.NEWS_API_KEY
 import com.capstone.nutrisight.data.response.ArticlesItem
 import com.capstone.nutrisight.databinding.FragmentDashboardBinding
 import com.capstone.nutrisight.ui.adapter.ArticleAdapter

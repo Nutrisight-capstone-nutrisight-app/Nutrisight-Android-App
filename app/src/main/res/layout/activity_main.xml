@@ -52,7 +52,7 @@
         app:iconPadding="-3dp"
         android:textColor="@color/white"
         android:textAllCaps="false"
-        android:drawableTop="@drawable/barcode"
+        android:drawableTop="@drawable/baseline_camera_enhance_24"
         app:iconTint="@color/white_black"
         android:gravity="center"
         app:layout_anchor="@+id/bottom_app_bar" />

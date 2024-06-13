@@ -77,4 +77,10 @@
     <string name="natrium">Natrium</string>
     <string name="salt">Salt</string>
     <string name="save">Save</string>
+    <string name="invalid_email">Invalid email format</string>
+    <string name="empty_field">Please fill in all fields</string>
+    <string name="login_successful">Login Succesful!</string>
+    <string name="login_failed_please_try_again">Login Failed. Please Try Again</string>
+    <string name="loading_please_wait">Loading. Please Wait...</string>
+    <string name="password_not_match">Your password and confirm password must be the same</string>
 </resources>

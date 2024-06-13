@@ -9,8 +9,10 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.ViewCompat
@@ -19,6 +21,9 @@ import com.capstone.nutrisight.R
 import com.capstone.nutrisight.databinding.ActivityRegisterBinding
 import com.capstone.nutrisight.databinding.DialogRegisterFailedBinding
 import com.capstone.nutrisight.databinding.DialogRegisterSuccessBinding
+import com.capstone.nutrisight.ui.model.MainViewModelFactory
+import com.capstone.nutrisight.ui.model.RegisterViewModel
+import com.capstone.nutrisight.ui.model.SettingViewModel
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
@@ -36,8 +41,40 @@ class RegisterActivity : AppCompatActivity() {
             )
         }
         setContentView(binding.root)
+        val factory: MainViewModelFactory = MainViewModelFactory.getInstance(this)
+        val registerViewModel: RegisterViewModel by viewModels {
+            factory
+        }
 
         binding.btnRegisterNow.setOnClickListener {
+            val nameEmpty = binding.edtUsername.checkEditTextEmpty()
+            val emailEmpty = binding.edtEmailRegister.checkEditTextEmpty()
+            val passwordEmpty = binding.edtPasswordRegister.checkEditTextEmpty()
+            val confirmPasswordEmpty = binding.edtConfirmPassword.checkEditTextEmpty()
+            val name = binding.edtUsername.text.toString().trim()
+            val email = binding.edtEmailRegister.text.toString().trim()
+            val password = binding.edtPasswordRegister.text.toString().trim()
+            val confirmPassword = binding.edtConfirmPassword.text.toString().trim()
+
+            if (!nameEmpty && !emailEmpty && !passwordEmpty && !confirmPasswordEmpty) {
+                if (password == confirmPassword) {
+                    registerViewModel.isLoading.observe(this) {
+                        showLoading(it)
+                    }
+                    registerViewModel.message.observe(this) {
+                        Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+                    }
+                    registerViewModel.register(name, email, password)
+                } else {
+                    Toast.makeText(this, R.string.password_not_match, Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(this, R.string.empty_field, Toast.LENGTH_SHORT).show()
+            }
+            showSuccessDialog()
+        }
+
+        registerViewModel.registerResponse.observe(this) {
             showSuccessDialog()
         }
 
@@ -85,6 +122,8 @@ class RegisterActivity : AppCompatActivity() {
             binding.progressBar.visibility = View.GONE
         }
     }
+
+
 
 
     private fun onBackPressedCallback() {

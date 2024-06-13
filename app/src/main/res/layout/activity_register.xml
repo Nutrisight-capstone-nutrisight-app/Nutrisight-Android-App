@@ -55,7 +55,7 @@
             app:layout_constraintBottom_toTopOf="@+id/edt_email_register"
             />
 
-        <EditText
+        <com.capstone.nutrisight.ui.custom.CustomEditTextEmpty
             android:id="@+id/edt_email_register"
             android:layout_width="0dp"
             android:layout_height="56dp"
@@ -86,7 +86,7 @@
             app:layout_constraintBottom_toTopOf="@+id/edt_username"
             />
 
-        <EditText
+        <com.capstone.nutrisight.ui.custom.CustomEditTextEmpty
             android:id="@+id/edt_username"
             android:layout_width="0dp"
             android:layout_height="56dp"
@@ -117,7 +117,7 @@
             app:layout_constraintBottom_toTopOf="@+id/edt_password_register"
             />
 
-        <EditText
+        <com.capstone.nutrisight.ui.custom.CustomEditTextEmpty
             android:id="@+id/edt_password_register"
             android:layout_width="0dp"
             android:layout_height="56dp"
@@ -149,7 +149,7 @@
             app:layout_constraintBottom_toTopOf="@+id/edt_confirm_password"
             />
 
-        <EditText
+        <com.capstone.nutrisight.ui.custom.CustomEditTextEmpty
             android:id="@+id/edt_confirm_password"
             android:layout_width="0dp"
             android:layout_height="56dp"

@@ -24,14 +24,16 @@ import com.capstone.nutrisight.databinding.DialogLanguageBinding
 import com.capstone.nutrisight.databinding.DialogLogoutBinding
 import com.capstone.nutrisight.preferences.SettingsPreferences
 import com.capstone.nutrisight.preferences.dataStore
+import com.capstone.nutrisight.ui.model.MainViewModelFactory
 import com.capstone.nutrisight.ui.model.SettingViewModel
-import com.capstone.nutrisight.ui.model.SettingViewModelFactory
 import java.util.Locale
 
 class SettingsActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySettingsBinding
-    private val settingViewModel: SettingViewModel by viewModels<SettingViewModel>() {
-        SettingViewModelFactory.getInstance(getSettingPreferences(this))
+    private lateinit var settingsPreferences: SettingsPreferences
+    private val factory: MainViewModelFactory = MainViewModelFactory.getInstance(this)
+    private val settingViewModel: SettingViewModel by viewModels {
+        factory
     }
 
 
@@ -49,7 +51,10 @@ class SettingsActivity : AppCompatActivity() {
         }
         setContentView(binding.root)
 
+
+
         getSettingPreferences(applicationContext)
+        settingsPreferences = SettingsPreferences.getInstance(dataStore)
 
         binding.btnLogout.setOnClickListener {
             showLogoutDialog()
@@ -97,6 +102,7 @@ class SettingsActivity : AppCompatActivity() {
 
         binding.btnLogout.setOnClickListener {
             dialog.dismiss()
+            settingViewModel.logout()
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
