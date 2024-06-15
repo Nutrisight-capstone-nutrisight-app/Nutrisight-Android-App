@@ -1,6 +1,6 @@
-package com.capstone.nutrisight.data.api
+package com.capstone.nutrisight.data.api.service
 
-import com.capstone.nutrisight.BuildConfig
+import com.capstone.nutrisight.data.api.ApiConstant
 import com.capstone.nutrisight.data.response.ArticleResponse
 import retrofit2.Call
 import retrofit2.http.GET

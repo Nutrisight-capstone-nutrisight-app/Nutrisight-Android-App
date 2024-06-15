@@ -76,5 +76,15 @@
     <string name="sugar">砂糖</string>
     <string name="natrium">ナトリウム</string>
     <string name="salt">塩</string>
+    <string name="save">保存</string>
+    <string name="invalid_email">無効なメール形式</string>
+    <string name="empty_field">すべてのフィールドに入力してください</string>
+    <string name="login_successful">ログイン成功！</string>
+    <string name="login_failed_please_try_again">ログインに失敗しました。再試行してください</string>
+    <string name="loading_please_wait">読み込み中です。お待ちください…</string>
+    <string name="password_not_match">パスワードと確認用パスワードが一致しません</string>
+    <string name="warning_text">より良い分類と検出のために、正確な入力データを確保し、高品質な画像を使用し、背景を明確にしてください。</string>
+    <string name="must_fill">このフィールドに入力してください</string>
+    <string name="warning_for_user">ユーザーへの警告</string>
 
 </resources>

@@ -6,6 +6,8 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
@@ -30,6 +32,10 @@ import kotlinx.coroutines.launch
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var settingsPreferences: SettingsPreferences
+    private val factory: MainViewModelFactory = MainViewModelFactory.getInstance(this)
+    private val viewModel: LoginViewModel by viewModels {
+        factory
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -37,18 +43,10 @@ class LoginActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.setDecorFitsSystemWindows(false)
         } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-            )
+            window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         }
         setContentView(binding.root)
 
-        val factory: MainViewModelFactory = MainViewModelFactory.getInstance(this)
-        val viewModel: LoginViewModel by viewModels {
-            factory
-        }
-        getSettingPreferences(applicationContext)
         settingsPreferences = SettingsPreferences.getInstance(dataStore)
 
         binding.btnRegister.setOnClickListener {
@@ -58,51 +56,60 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.btnLogin.setOnClickListener {
-            val emailEmpty = binding.edtEmail.checkEditTextEmpty()
-            val passwordEmpty = binding.edtPassword.checkEditTextEmpty()
-
-            if (!emailEmpty && !passwordEmpty) {
-                val emailValid = binding.edtEmail.error == null
-
-                if (emailValid) {
-                    val email = binding.edtEmail.text.toString().trim()
-                    val password = binding.edtPassword.text.toString().trim()
-                    viewModel.isLoading.observe(this) {
-                        showLoading(it)
-                    }
-                    viewModel.login(email, password)
-                } else {
-                    if (!emailValid) {
-                        Toast.makeText(this, R.string.invalid_email, Toast.LENGTH_SHORT).show()
-                    }
-                }
-            } else {
-                Toast.makeText(this, R.string.empty_field, Toast.LENGTH_SHORT).show()
-            }
-
-
-            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+            handleLoginClick()
         }
 
         viewModel.loginResponse.observe(this) { response ->
-            lifecycleScope.launch {
-                settingsPreferences.saveUser(response)
-            }
-            Toast.makeText(this, R.string.login_successful, Toast.LENGTH_SHORT).show()
-            val intent = Intent(this@LoginActivity, MainActivity::class.java).apply {
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            }
-            startActivity(intent)
-            finish()
+                lifecycleScope.launch {
+                    settingsPreferences.saveUser(response)
+                }
+                Toast.makeText(this, R.string.login_successful, Toast.LENGTH_SHORT).show()
+                val intent = Intent(this@LoginActivity, MainActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                }
+                startActivity(intent)
+                finish()
+        }
+
+        viewModel.error.observe(this) { errorMessage ->
+            Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+            Log.d("LoginActivity", "Error: $errorMessage")
+            showLoading(false)
+        }
+
+        viewModel.isLoading.observe(this) {
+            showLoading(it)
         }
     }
 
-    private fun showFailedDialog() {
+    private fun handleLoginClick() {
+        val emailEmpty = binding.edtEmail.checkEditTextEmpty()
+        val passwordEmpty = binding.edtPassword.checkEditTextEmpty()
+
+        if (!emailEmpty && !passwordEmpty) {
+            val emailValid = binding.edtEmail.error == null
+
+            if (emailValid) {
+                val email = binding.edtEmail.text?.toString()?.trim() ?: ""
+                val password = binding.edtPassword.text?.toString()?.trim() ?: ""
+                viewModel.login(email, password)
+            } else {
+                if (!emailValid) {
+                    Toast.makeText(this, R.string.invalid_email, Toast.LENGTH_SHORT).show()
+                }
+            }
+        } else {
+            Toast.makeText(this, R.string.empty_field, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun showFailedDialog(error: String) {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.dialog_login_failed)
         dialog.setCancelable(false)
+
+        val errorMessageTextView = dialog.findViewById<TextView>(R.id.tv_failed)
+        errorMessageTextView.text = error
 
         val btnOk = dialog.findViewById<Button>(R.id.btn_ok)
         btnOk.setOnClickListener {
@@ -128,17 +135,11 @@ class LoginActivity : AppCompatActivity() {
         dialog.dismiss()
     }
 
-    private fun getSettingPreferences(context: Context): SettingsPreferences {
-        return SettingsPreferences.getInstance(context.dataStore)
-    }
-
-
-
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) {
-            showLoadingDialog()
+            binding.progressBar.visibility = View.VISIBLE
         } else {
-            hideLoadingDialog()
+            binding.progressBar.visibility = View.GONE
         }
     }
 }

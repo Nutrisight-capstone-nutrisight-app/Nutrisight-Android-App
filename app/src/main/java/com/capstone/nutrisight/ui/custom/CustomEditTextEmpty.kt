@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
+import com.capstone.nutrisight.R
 
 
 class CustomEditTextEmpty @JvmOverloads constructor(
@@ -17,7 +18,7 @@ class CustomEditTextEmpty @JvmOverloads constructor(
 
     fun checkEditTextEmpty(): Boolean {
         return if (text.isNullOrEmpty()) {
-            setError("You must fill this field", null)
+            setError(context.resources.getString(R.string.must_fill), null)
             true
         } else {
             error = null

@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
+import com.capstone.nutrisight.R
 
 class CustomEditTextEmail @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
@@ -21,7 +22,7 @@ class CustomEditTextEmail @JvmOverloads constructor(
     ) {
         val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
         if (!text.isNullOrEmpty() && !text.matches(emailPattern.toRegex())) {
-            setError("Invalid email format", null)
+            setError(context.resources.getString(R.string.invalid_email), null)
         } else {
             error = null
         }
@@ -29,7 +30,7 @@ class CustomEditTextEmail @JvmOverloads constructor(
 
     fun checkEditTextEmpty(): Boolean {
         return if (text.isNullOrEmpty()) {
-            setError("You must fill this field", null)
+            setError(context.resources.getString(R.string.must_fill), null)
             true
         } else {
             error = null

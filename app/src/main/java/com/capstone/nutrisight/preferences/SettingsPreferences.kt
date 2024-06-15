@@ -33,8 +33,6 @@ class SettingsPreferences private constructor(private val dataStore: DataStore<P
 
     private object PreferencesKeys {
         val TOKEN = stringPreferencesKey("token")
-//        val NAME = stringPreferencesKey("name")
-//        val USER_ID = stringPreferencesKey("userId")
         val THEME_KEY = booleanPreferencesKey("theme_setting")
         val LANGUAGE_KEY = stringPreferencesKey("language_setting")
     }
@@ -44,7 +42,7 @@ class SettingsPreferences private constructor(private val dataStore: DataStore<P
             val token = preferences[PreferencesKeys.TOKEN]
 
             if (token != null) {
-                LoginResponse(token)
+                LoginResponse(token, "")
             } else {
                 null
             }
@@ -56,8 +54,6 @@ class SettingsPreferences private constructor(private val dataStore: DataStore<P
             preferences[PreferencesKeys.TOKEN] = user.accessToken
         }
     }
-
-
 
     fun getThemeSetting(): Flow<Boolean> {
         return dataStore.data.map { preferences ->

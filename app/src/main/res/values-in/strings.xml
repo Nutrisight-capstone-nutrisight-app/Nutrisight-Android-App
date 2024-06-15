@@ -76,5 +76,14 @@
     <string name="sugar">Gula</string>
     <string name="natrium">Natrium</string>
     <string name="salt">Garam</string>
-
+    <string name="save">Simpan</string>
+    <string name="invalid_email">Format email tidak valid</string>
+    <string name="empty_field">Harap isi semua bidang</string>
+    <string name="login_successful">Login Berhasil!</string>
+    <string name="login_failed_please_try_again">Login Gagal. Silakan Coba Lagi</string>
+    <string name="loading_please_wait">Memuat. Harap Tunggu…</string>
+    <string name="password_not_match">Kata sandi dan konfirmasi kata sandi Anda harus sama</string>
+    <string name="warning_text">Untuk klasifikasi dan deteksi yang lebih baik, pastikan data input akurat, gunakan gambar berkualitas tinggi, dan latar belakang yang jelas.</string>
+    <string name="must_fill">Anda harus mengisi bidang ini</string>
+    <string name="warning_for_user">Peringatan untuk pengguna</string>
 </resources>

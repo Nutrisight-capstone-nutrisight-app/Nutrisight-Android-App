@@ -1,6 +1,6 @@
 package com.capstone.nutrisight.repository
 
-import com.capstone.nutrisight.data.api.RegisterLoginApiService
+import com.capstone.nutrisight.data.api.service.RegisterLoginApiService
 import com.capstone.nutrisight.data.response.LoginResponse
 import com.capstone.nutrisight.data.response.RegisterDeleteResponse
 import com.capstone.nutrisight.preferences.SettingsPreferences
@@ -13,9 +13,9 @@ class RegisterLoginRepository private constructor(
 ){
 
 
-    suspend fun register(name: String, email: String, password: String): RegisterDeleteResponse {
+    suspend fun register(username: String, email: String, password: String): RegisterDeleteResponse {
         return withContext(Dispatchers.IO) {
-            registerLoginApiService.register(name, email, password)
+            registerLoginApiService.register(username, email, password)
         }
     }
 

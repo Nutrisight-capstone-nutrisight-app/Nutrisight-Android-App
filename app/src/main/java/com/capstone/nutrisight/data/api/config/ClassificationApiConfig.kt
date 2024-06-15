@@ -1,15 +1,16 @@
-package com.capstone.nutrisight.data.api
+package com.capstone.nutrisight.data.api.config
 
-import com.capstone.nutrisight.BuildConfig
+import com.capstone.nutrisight.data.api.ApiConstant
+import com.capstone.nutrisight.data.api.service.ClassificationApiService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
-class ArticleApiConfig {
+class ClassificationApiConfig {
     companion object {
-        fun getApiService(): ArticleApiService {
+        fun getApiService(): ClassificationApiService {
             val authInterceptor = Interceptor { chain ->
                 val req = chain.request()
                 val requestHeaders = req.newBuilder()
@@ -22,12 +23,12 @@ class ArticleApiConfig {
                 .build()
 
             val retrofit = Retrofit.Builder()
-                .baseUrl(ApiConstant.NEWS_BASE_URL)
+                .baseUrl(ApiConstant.ML_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
 
-            return retrofit.create(ArticleApiService::class.java)
+            return retrofit.create(ClassificationApiService::class.java)
         }
     }
 }

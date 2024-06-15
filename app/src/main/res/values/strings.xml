@@ -79,8 +79,12 @@
     <string name="save">Save</string>
     <string name="invalid_email">Invalid email format</string>
     <string name="empty_field">Please fill in all fields</string>
-    <string name="login_successful">Login Succesful!</string>
+    <string name="login_successful">Login Successful!</string>
     <string name="login_failed_please_try_again">Login Failed. Please Try Again</string>
-    <string name="loading_please_wait">Loading. Please Wait...</string>
+    <string name="loading_please_wait">Loading. Please Wait…</string>
     <string name="password_not_match">Your password and confirm password must be the same</string>
+    <string name="warning_text">For better classification and detection, ensure accurate input data, use high-quality images, and clear background.</string>
+    <string name="must_fill">You must fill this field</string>
+    <string name="warning_for_user">Warning for user</string>
+    <string name="failed_to_upload_image_please_try_again">Failed to upload image, please try again</string>
 </resources>

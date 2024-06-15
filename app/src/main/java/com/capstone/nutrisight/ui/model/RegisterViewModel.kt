@@ -1,39 +1,49 @@
 package com.capstone.nutrisight.ui.model
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.capstone.nutrisight.R
 import com.capstone.nutrisight.data.response.RegisterDeleteResponse
 import com.capstone.nutrisight.repository.RegisterLoginRepository
 import kotlinx.coroutines.launch
+import org.json.JSONObject
+import retrofit2.HttpException
 
 class RegisterViewModel(
     private val registerLoginRepository: RegisterLoginRepository
-): ViewModel() {
+) : ViewModel() {
 
     private val _registerResponse = MutableLiveData<RegisterDeleteResponse>()
-    val registerResponse: MutableLiveData<RegisterDeleteResponse> = _registerResponse
-
-    private val _message = MutableLiveData<String>()
-    val message: MutableLiveData<String> = _message
+    val registerResponse: LiveData<RegisterDeleteResponse> = _registerResponse
 
     private val _isLoading = MutableLiveData<Boolean>()
-    val isLoading: MutableLiveData<Boolean> = _isLoading
+    val isLoading: LiveData<Boolean> = _isLoading
 
-    fun register(name: String, email: String, password: String) {
+    fun register(username: String, email: String, password: String) {
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                val response = registerLoginRepository.register(name, email, password)
+                val response = registerLoginRepository.register(username, email, password)
                 _registerResponse.value = response
-                _message.value = response.message
-                _isLoading.value = false
             } catch (e: Exception) {
-                Log.d("RegisterViewModel", "register: ${e.message.toString()}")
+                val errorResponse = parseErrorResponse(e)
+                _registerResponse.value = RegisterDeleteResponse(message = null, error = errorResponse)
+            } finally {
                 _isLoading.value = false
             }
         }
     }
 
+    private fun parseErrorResponse(exception: Exception): String {
+        return try {
+            val errorBody = (exception as? HttpException)?.response()?.errorBody()?.string()
+            val errorJson = errorBody?.let { JSONObject(it) }
+            errorJson!!.getString("message")
+        } catch (ex: Exception) {
+            "Unknown error occurred"
+        }
+    }
 }

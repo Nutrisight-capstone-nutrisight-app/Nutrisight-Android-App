@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/background_color"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activity.RegisterActivity">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="fill_vertical|bottom"
-        >
 
         <TextView
             android:id="@+id/tv_register"
@@ -32,8 +26,6 @@
             android:id="@+id/vector_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:layout_marginTop="24dp"
             android:contentDescription="@string/vector_illustration_of_a_register_screen"
             android:src="@drawable/registerillustration"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,7 +47,7 @@
             app:layout_constraintBottom_toTopOf="@+id/edt_email_register"
             />
 
-        <com.capstone.nutrisight.ui.custom.CustomEditTextEmpty
+        <com.capstone.nutrisight.ui.custom.CustomEditTextEmail
             android:id="@+id/edt_email_register"
             android:layout_width="0dp"
             android:layout_height="56dp"
@@ -199,13 +191,4 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

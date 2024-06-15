@@ -1,4 +1,4 @@
-package com.capstone.nutrisight.data.api
+package com.capstone.nutrisight.data.api.service
 
 import com.capstone.nutrisight.data.response.User
 import com.capstone.nutrisight.data.response.UserResponse

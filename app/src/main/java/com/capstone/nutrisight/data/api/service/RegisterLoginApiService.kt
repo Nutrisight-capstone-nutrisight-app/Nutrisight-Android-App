@@ -1,4 +1,4 @@
-package com.capstone.nutrisight.data.api
+package com.capstone.nutrisight.data.api.service
 
 import com.capstone.nutrisight.data.response.LoginResponse
 import com.capstone.nutrisight.data.response.RegisterDeleteResponse
@@ -12,7 +12,7 @@ interface RegisterLoginApiService {
     @FormUrlEncoded
     @POST("/register")
     suspend fun register(
-        @Field("name") name: String,
+        @Field("username") name: String,
         @Field("email") email: String,
         @Field("password") password: String
     ): RegisterDeleteResponse
@@ -24,7 +24,6 @@ interface RegisterLoginApiService {
         @Field("password") password: String
     ): LoginResponse
 
-    @FormUrlEncoded
     @DELETE("/logout")
     suspend fun logout(): RegisterDeleteResponse
 
