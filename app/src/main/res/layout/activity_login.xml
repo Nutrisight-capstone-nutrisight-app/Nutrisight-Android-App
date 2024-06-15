@@ -33,7 +33,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/edt_email"/>
     
-    <EditText
+    <com.capstone.nutrisight.ui.custom.CustomEditTextEmail
         android:id="@+id/edt_email"
         android:layout_width="0dp"
         android:layout_height="56dp"
@@ -43,6 +43,7 @@
         android:drawableStart="@drawable/baseline_email_24"
         android:drawablePadding="8dp"
         android:paddingHorizontal="12dp"
+        android:fontFamily="@font/josefin_sans"
         android:inputType="textEmailAddress"
         android:elevation="4dp"
         android:hint="@string/email_address"
@@ -51,7 +52,7 @@
         android:background="@drawable/custom_loginedttext"
         app:layout_constraintBottom_toTopOf="@+id/edt_password"/>
 
-    <EditText
+    <com.capstone.nutrisight.ui.custom.CustomEditTextEmpty
         android:id="@+id/edt_password"
         android:layout_width="0dp"
         android:layout_height="56dp"
@@ -62,6 +63,7 @@
         android:drawablePadding="8dp"
         android:paddingHorizontal="12dp"
         android:inputType="textPassword"
+        android:fontFamily="@font/josefin_sans"
         android:elevation="4dp"
         android:hint="@string/password"
         app:layout_constraintStart_toStartOf="parent"
@@ -104,6 +106,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

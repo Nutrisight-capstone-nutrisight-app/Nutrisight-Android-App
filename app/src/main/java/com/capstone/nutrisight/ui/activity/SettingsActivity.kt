@@ -15,23 +15,28 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.capstone.nutrisight.R
 import com.capstone.nutrisight.databinding.ActivitySettingsBinding
 import com.capstone.nutrisight.databinding.DialogLanguageBinding
 import com.capstone.nutrisight.databinding.DialogLogoutBinding
 import com.capstone.nutrisight.preferences.SettingsPreferences
 import com.capstone.nutrisight.preferences.dataStore
+import com.capstone.nutrisight.ui.model.MainViewModelFactory
 import com.capstone.nutrisight.ui.model.SettingViewModel
-import com.capstone.nutrisight.ui.model.SettingViewModelFactory
+import kotlinx.coroutines.launch
 import java.util.Locale
 
 class SettingsActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySettingsBinding
-    private val settingViewModel: SettingViewModel by viewModels<SettingViewModel>() {
-        SettingViewModelFactory.getInstance(getSettingPreferences(this))
+    private lateinit var settingsPreferences: SettingsPreferences
+    private val factory: MainViewModelFactory = MainViewModelFactory.getInstance(this)
+    private val settingViewModel: SettingViewModel by viewModels {
+        factory
     }
 
 
@@ -49,7 +54,7 @@ class SettingsActivity : AppCompatActivity() {
         }
         setContentView(binding.root)
 
-        getSettingPreferences(applicationContext)
+        settingsPreferences = SettingsPreferences.getInstance(dataStore)
 
         binding.btnLogout.setOnClickListener {
             showLogoutDialog()
@@ -84,10 +89,6 @@ class SettingsActivity : AppCompatActivity() {
 
     }
 
-    private fun getSettingPreferences(context: Context): SettingsPreferences {
-        return SettingsPreferences.getInstance(context.dataStore)
-    }
-
     private fun showLogoutDialog() {
         val dialog = Dialog(this)
         val binding: DialogLogoutBinding = DialogLogoutBinding.inflate(layoutInflater)
@@ -96,6 +97,9 @@ class SettingsActivity : AppCompatActivity() {
         dialog.setCancelable(true)
 
         binding.btnLogout.setOnClickListener {
+            lifecycleScope.launch {
+                settingViewModel.logout()
+            }
             dialog.dismiss()
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
@@ -152,10 +156,14 @@ class SettingsActivity : AppCompatActivity() {
     private fun setLocale(lang: String) {
         val locale = Locale(lang)
         Locale.setDefault(locale)
-        val resources = resources
         val config = resources.configuration
         config.setLocale(locale)
+        createConfigurationContext(config)
         resources.updateConfiguration(config, resources.displayMetrics)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            AppCompatDelegate.setApplicationLocales(LocaleListCompat.create(locale))
+        }
     }
 
     private fun onBackPressedCallback() {

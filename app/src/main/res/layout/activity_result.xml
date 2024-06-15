@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.ResultActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       >
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_result"
+            android:layout_width="match_parent"
+            android:layout_height="360dp"
+            app:cardBackgroundColor="@color/main_green_dark"
+            app:strokeColor="@android:color/transparent"
+            app:strokeWidth="0dp"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialCardView.Cut"
+            app:cardElevation="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/img_card_result_food"
+                    android:layout_width="140dp"
+                    android:layout_height="164dp"
+                    android:elevation="8dp"
+                    app:cardCornerRadius="25dp"
+                    app:cardElevation="4dp"
+                    android:layout_margin="32dp"
+                    android:backgroundTint="@color/white_black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    >
+
+                    <ImageView
+                        android:id="@+id/img_saved_food"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        android:backgroundTint="@color/main_green_40"
+                        android:contentDescription="@string/image_of_the_saved_food"
+                        tools:src="@tools:sample/avatars"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/img_card_result_food"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="68dp"
+                        android:layout_height="66dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginBottom="8dp"
+                        android:elevation="8dp"
+                        app:cardCornerRadius="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/cal"
+                            android:textSize="14sp"
+                            android:layout_marginTop="12dp"
+                            android:gravity="center"
+                            android:textColor="@color/main_green"/>
+
+                        <TextView
+                            android:id="@+id/cal_result_food"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:text="45"
+                            android:textSize="14sp"
+                            android:gravity="center"
+                            android:layout_marginTop="12dp"
+                            android:layout_gravity="center"
+                            android:textColor="@color/black_white"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="68dp"
+                        android:layout_height="66dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginBottom="8dp"
+                        android:elevation="8dp"
+                        app:cardCornerRadius="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/fat"
+                            android:textSize="14sp"
+                            android:layout_marginTop="12dp"
+                            android:gravity="center"
+                            android:textColor="@color/main_green"/>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/card_grade_fat"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginTop="32dp"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="18dp"
+                            android:elevation="8dp"
+                            app:cardCornerRadius="4dp"
+                            tools:backgroundTint="@color/bg_grade_b">
+
+                            <TextView
+                                android:id="@+id/grade_fat_food"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:textColor="@color/main_green"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                tools:text="B"
+                                tools:textColor="@color/text_grade_b" />
+
+
+                        </androidx.cardview.widget.CardView>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="68dp"
+                        android:layout_height="66dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginBottom="8dp"
+                        android:elevation="8dp"
+                        app:cardCornerRadius="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sugar"
+                            android:textSize="14sp"
+                            android:layout_marginTop="12dp"
+                            android:gravity="center"
+                            android:textColor="@color/main_green"/>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/card_grade_sugar"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginTop="32dp"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="18dp"
+                            android:elevation="8dp"
+                            app:cardCornerRadius="4dp"
+                            tools:backgroundTint="@color/bg_grade_b">
+
+                            <TextView
+                                android:id="@+id/grade_sugar_food"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:text="B"
+                                tools:textColor="@color/text_grade_b"
+                                android:textStyle="bold"
+                                android:textSize="12sp"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:textColor="@color/main_green"/>
+
+
+                        </androidx.cardview.widget.CardView>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="68dp"
+                        android:layout_height="66dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginBottom="8dp"
+                        android:elevation="8dp"
+                        app:cardCornerRadius="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/salt"
+                            android:textSize="14sp"
+                            android:layout_marginTop="12dp"
+                            android:gravity="center"
+                            android:textColor="@color/main_green"/>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/card_grade_salt"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginTop="32dp"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="18dp"
+                            android:elevation="8dp"
+                            app:cardCornerRadius="4dp"
+                            tools:backgroundTint="@color/bg_grade_b">
+
+                            <TextView
+                                android:id="@+id/grade_salt_food"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:text="B"
+                                tools:textColor="@color/text_grade_b"
+                                android:textStyle="bold"
+                                android:textSize="12sp"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:textColor="@color/main_green"/>
+
+
+                        </androidx.cardview.widget.CardView>
+
+                    </androidx.cardview.widget.CardView>
+
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintStart_toEndOf="@+id/img_card_result_food"
+                    app:layout_constraintTop_toTopOf="@+id/img_card_result_food"
+                    app:layout_constraintBottom_toBottomOf="@+id/img_card_result_food"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:id="@+id/name_result_food"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxWidth="120dp"
+                        tools:text="Indomie Goreng"
+                        android:textSize="32sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/category_result_food"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="24sp"
+                            android:textColor="@color/main_green_20"
+                            tools:text="Drink"/>
+
+                        <TextView
+                            android:id="@+id/netto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="250ml"
+                            android:layout_marginStart="8dp"
+                            android:gravity="center"
+                            android:textSize="24sp"
+                            android:textColor="@color/main_green_20"/>
+
+                    </LinearLayout>
+
+
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_view_grade_all"
+                        android:layout_width="54dp"
+                        android:layout_height="54dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginBottom="8dp"
+                        android:elevation="8dp"
+                        app:cardCornerRadius="10dp"
+                        tools:backgroundTint="@color/bg_grade_b">
+
+                        <TextView
+                            android:id="@+id/grade_saved_food"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:text="B"
+                            tools:textColor="@color/text_grade_b"
+                            android:textStyle="bold"
+                            android:textSize="32sp"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textColor="@color/main_green"/>
+
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:id="@+id/nutrition_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btn_save_result"
+            app:layout_constraintTop_toBottomOf="@+id/card_view_result">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/nutritional_information"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:textColor="@color/black_white"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/black_white"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/serving_size"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black_white"/>
+
+                <TextView
+                    android:id="@+id/serving_size"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:textColor="@color/black_white"
+                    tools:text="1 serving (250)ml"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/black_white"/>
+
+            <TextView
+                android:id="@+id/per_serving"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/black_white"
+                android:layout_marginTop="8dp"
+                tools:text="per serving"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/black_white"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/energy"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black_white"/>
+
+                <TextView
+                    android:id="@+id/energy"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:textColor="@color/black_white"
+                    tools:text="188Kj"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/energy_fat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="end"
+                android:textColor="@color/black_white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="45 kkal" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/black_white"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fat"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black_white"/>
+
+                <TextView
+                    android:id="@+id/fat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:textColor="@color/black_white"
+                    tools:text="0,00g"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/saturated_fat"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_white"
+                    android:layout_marginStart="12dp"/>
+
+                <TextView
+                    android:id="@+id/saturated_fat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:textColor="@color/black_white"
+                    tools:text="0,00g"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/black_white"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/protein"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black_white"/>
+
+                <TextView
+                    android:id="@+id/protein"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:textColor="@color/black_white"
+                    tools:text="0,00g"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/black_white"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/carbs"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black_white"/>
+
+                <TextView
+                    android:id="@+id/carbs"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:textColor="@color/black_white"
+                    tools:text="11,00g"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sugar"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_white"
+                    android:layout_marginStart="12dp"/>
+
+                <TextView
+                    android:id="@+id/sugar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:textColor="@color/black_white"
+                    tools:text="11,00g"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/black_white"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/natrium"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black_white"/>
+
+                <TextView
+                    android:id="@+id/natrium"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:textColor="@color/black_white"
+                    tools:text="55mg"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_save_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/main_green"
+            app:icon="@drawable/save_white"
+            app:iconSize="32dp"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginBottom="32dp"
+            android:padding="12dp"
+            app:cornerRadius="10dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            app:iconTint="@color/white"
+            android:text="@string/save"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:iconGravity="textStart"
+            app:iconPadding="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/nutrition_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

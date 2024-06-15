@@ -1,15 +1,21 @@
 package com.capstone.nutrisight.ui.activity
 
+import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.OrientationEventListener
 import android.view.Surface
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
@@ -19,21 +25,51 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.capstone.nutrisight.R
 import com.capstone.nutrisight.databinding.ActivityCameraBinding
+import com.capstone.nutrisight.di.Injection
+import com.capstone.nutrisight.repository.ClassificationRepository
+import com.capstone.nutrisight.ui.model.ClassificationViewModel
+import com.capstone.nutrisight.ui.model.ClassificationViewModelFactory
 import com.capstone.nutrisight.utils.createCustomTempFile
+import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
 
 class CameraActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraBinding
     private var imageCapture: ImageCapture? = null
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+    private val factory: ClassificationViewModelFactory = ClassificationViewModelFactory.getInstance()
+    private val viewModel: ClassificationViewModel by viewModels {
+        factory
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.captureImage.setOnClickListener {
+            takePhoto()
+        }
 
+        viewModel.classificationResponse.observe(this) {response ->
+            response?.let {
+                showLoading(false)
+                val intent = Intent(this@CameraActivity, ResultActivity::class.java)
+                intent.putExtra("classification_response", response)
+                startActivity(intent)
+                finish()
+            }
+        }
 
+        viewModel.isLoading.observe(this) {
+            showLoading(it)
+        }
     }
 
     public override fun onResume() {
@@ -53,14 +89,17 @@ class CameraActivity : AppCompatActivity() {
                     it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
                 }
 
-            imageCapture = ImageCapture.Builder().build()
+            imageCapture = ImageCapture.Builder()
+                .setCaptureMode(ImageCapture.CAPTURE_MODE_MAXIMIZE_QUALITY)
+                .build()
 
             try {
                 cameraProvider.unbindAll()
                 cameraProvider.bindToLifecycle(
                     this,
                     cameraSelector,
-                    preview
+                    preview,
+                    imageCapture
                 )
             } catch (e: Exception) {
                 Toast.makeText(
@@ -86,11 +125,7 @@ class CameraActivity : AppCompatActivity() {
             ContextCompat.getMainExecutor(this),
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-                    Toast.makeText(
-                        this@CameraActivity,
-                        "Berhasil mengambil gambar.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    uploadImage(photoFile)
                 }
 
                 override fun onError(exception: ImageCaptureException) {
@@ -100,10 +135,30 @@ class CameraActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                     Log.e(TAG, "onError: ${exception.message}")
+                    showLoading(false)
                 }
 
             }
         )
+    }
+
+    private fun uploadImage(file: File) {
+        try {
+            val requestFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+            val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
+            viewModel.upload(body)
+        } catch (e: Exception) {
+            showError(e.message)
+            showLoading(false)
+        }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            showLoadingDialog()
+        } else {
+            hideLoadingDialog()
+        }
     }
 
     private fun hideSystemUI() {
@@ -135,6 +190,40 @@ class CameraActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun showError(message: String?) {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_capture_failed)
+        dialog.setCancelable(true)
+
+        val errorMessageTextView = dialog.findViewById<TextView>(R.id.tv_failed)
+        errorMessageTextView.text = message
+
+        val btnOk = dialog.findViewById<TextView>(R.id.btn_ok)
+        btnOk.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+
+    }
+
+    private fun showLoadingDialog() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_loading)
+        dialog.setCancelable(false)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.show()
+    }
+
+    private fun hideLoadingDialog() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_loading)
+        dialog.setCancelable(false)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.dismiss()
+    }
+
     override fun onStart() {
         super.onStart()
         orientationEventListener.enable()

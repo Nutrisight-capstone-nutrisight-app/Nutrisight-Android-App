@@ -23,7 +23,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 
 class ScanBottomSheet : BottomSheetDialogFragment() {
-    private lateinit var binding: FragmentScanBottomSheetBinding
+    private var _binding: FragmentScanBottomSheetBinding? = null
+    private val binding get() = _binding!!
     private var currentImageUri: Uri? = null
 
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
@@ -61,8 +62,8 @@ class ScanBottomSheet : BottomSheetDialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentScanBottomSheetBinding.inflate(inflater, container, false)
-
+        _binding = FragmentScanBottomSheetBinding.inflate(inflater, container, false)
+        val view = binding.root
         binding.btnClose.setOnClickListener {
             dismiss()
         }
@@ -79,7 +80,7 @@ class ScanBottomSheet : BottomSheetDialogFragment() {
             startGallery()
         }
 
-        return binding.root
+        return view
     }
 
     private fun allPermissionsGranted() =

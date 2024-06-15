@@ -1,13 +1,13 @@
-package com.capstone.nutrisight.data.api
+package com.capstone.nutrisight.data.api.config
 
-import com.capstone.nutrisight.BuildConfig
+import com.capstone.nutrisight.data.api.ApiConstant
+import com.capstone.nutrisight.data.api.service.ArticleApiService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-const val NEWS_BASE_URL = BuildConfig.NEWS_BASE_URL
 class ArticleApiConfig {
     companion object {
         fun getApiService(): ArticleApiService {
@@ -23,7 +23,7 @@ class ArticleApiConfig {
                 .build()
 
             val retrofit = Retrofit.Builder()
-                .baseUrl(NEWS_BASE_URL)
+                .baseUrl(ApiConstant.NEWS_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

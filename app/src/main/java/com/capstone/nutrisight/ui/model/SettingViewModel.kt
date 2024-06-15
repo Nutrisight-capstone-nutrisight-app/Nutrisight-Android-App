@@ -5,9 +5,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.capstone.nutrisight.preferences.SettingsPreferences
+import com.capstone.nutrisight.repository.RegisterLoginRepository
 import kotlinx.coroutines.launch
 
-class SettingViewModel(private val pref: SettingsPreferences): ViewModel() {
+class SettingViewModel(private val pref: SettingsPreferences, private val registerLoginRepository: RegisterLoginRepository): ViewModel() {
 
     fun getThemeSettings(): LiveData<Boolean> {
         return pref.getThemeSetting().asLiveData()
@@ -26,6 +27,13 @@ class SettingViewModel(private val pref: SettingsPreferences): ViewModel() {
     fun saveLanguage(language: String) {
         viewModelScope.launch {
             pref.saveLanguageSetting(language)
+        }
+    }
+
+    fun logout() {
+        viewModelScope.launch {
+            pref.clearPreferences()
+            registerLoginRepository.logout()
         }
     }
 

@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.capstone.nutrisight.data.api.ArticleApiConfig
+import com.capstone.nutrisight.data.api.config.ArticleApiConfig
 import com.capstone.nutrisight.data.response.ArticleResponse
 import com.capstone.nutrisight.data.response.ArticlesItem
 import retrofit2.Call

@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("com.google.devtools.ksp")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -20,6 +21,8 @@ android {
         val properties = Properties()
         properties.load(project.rootProject.file("local.properties").inputStream())
         buildConfigField("String", "NEWS_API_KEY", "\"${properties.getProperty("NEWS_API_KEY")}\"")
+        buildConfigField("String", "BASE_URL", "\"${properties.getProperty("BASE_URL")}\"")
+        buildConfigField("String", "ML_URL", "\"${properties.getProperty("ML_URL")}\"")
         buildConfigField("String", "NEWS_BASE_URL", "\"https://newsapi.org/\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

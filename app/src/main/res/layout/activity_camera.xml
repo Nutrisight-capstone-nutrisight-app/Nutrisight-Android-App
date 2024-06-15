@@ -12,13 +12,50 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        app:cardCornerRadius="10dp"
+        android:layout_marginBottom="8dp"
+        app:strokeColor="@color/white"
+        android:backgroundTint="@color/grey_text_20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/captureImage">
+
+
+            <TextView
+                android:id="@+id/tv_warning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:drawablePadding="8dp"
+                android:background="@drawable/transparent_bg"
+                android:padding="8dp"
+                app:drawableStartCompat="@drawable/round_warning_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@string/warning_text"
+                />
+
+
+
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/captureImage"
         android:layout_width="75dp"
         android:layout_height="75dp"
         app:cornerRadius="15dp"
         app:icon="@drawable/round_camera_alt_24"
+        app:iconTint="@color/white"
         app:iconSize="32dp"
+        app:strokeColor="@color/white"
+        app:strokeWidth="1dp"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:layout_marginBottom="16dp"

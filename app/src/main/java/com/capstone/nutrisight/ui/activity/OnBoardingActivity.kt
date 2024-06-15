@@ -10,22 +10,21 @@ import android.view.WindowManager
 import android.view.animation.Animation
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.viewpager.widget.ViewPager
 import com.capstone.nutrisight.R
 import com.capstone.nutrisight.databinding.ActivityOnBoardingBinding
 import com.capstone.nutrisight.preferences.SettingsPreferences
 import com.capstone.nutrisight.preferences.dataStore
 import com.capstone.nutrisight.ui.adapter.SliderAdapter
+import com.capstone.nutrisight.ui.model.MainViewModelFactory
 import com.capstone.nutrisight.ui.model.SettingViewModel
-import com.capstone.nutrisight.ui.model.SettingViewModelFactory
-import com.google.android.material.animation.AnimationUtils
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import java.util.Locale
 
 class OnBoardingActivity : AppCompatActivity() {
@@ -36,9 +35,8 @@ class OnBoardingActivity : AppCompatActivity() {
     private lateinit var dots: Array<TextView?>
     private var showAnimation = false
     private var animation: Animation? = null
-    private val settingViewModel: SettingViewModel by viewModels<SettingViewModel>() {
-        SettingViewModelFactory.getInstance(getSettingPreferences(this))
-    }
+
+    private lateinit var settingPreferences: SettingsPreferences
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,6 +56,12 @@ class OnBoardingActivity : AppCompatActivity() {
         actionBar?.hide()
 
         setContentView(binding.root)
+        val factory: MainViewModelFactory = MainViewModelFactory.getInstance(this)
+        val settingViewModel: SettingViewModel by viewModels {
+            factory
+        }
+        getSettingPreferences(applicationContext)
+        settingPreferences = SettingsPreferences.getInstance(dataStore)
 
         sliderAdapter = SliderAdapter(this)
         viewPager = binding.slider
@@ -127,15 +131,35 @@ class OnBoardingActivity : AppCompatActivity() {
         binding.nextBtn.setOnClickListener{ viewPager.currentItem++ }
 
         binding.skipBtn.setOnClickListener {
-            val intent = Intent(this@OnBoardingActivity, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
+            lifecycleScope.launch {
+                val user = settingPreferences.getUser().first()
+                if (user != null) {
+                    val intent = Intent(this@OnBoardingActivity, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    val intent = Intent(this@OnBoardingActivity, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            }
+
         }
 
         binding.startBtn.setOnClickListener {
-            val intent = Intent(this@OnBoardingActivity, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
+            lifecycleScope.launch {
+                val user = settingPreferences.getUser().first()
+                if (user != null) {
+                    val intent = Intent(this@OnBoardingActivity, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    val intent = Intent(this@OnBoardingActivity, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            }
+
         }
 
         settingViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
