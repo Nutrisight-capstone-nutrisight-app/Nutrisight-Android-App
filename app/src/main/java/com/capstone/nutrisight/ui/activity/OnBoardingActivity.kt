@@ -21,7 +21,7 @@ import com.capstone.nutrisight.databinding.ActivityOnBoardingBinding
 import com.capstone.nutrisight.preferences.SettingsPreferences
 import com.capstone.nutrisight.preferences.dataStore
 import com.capstone.nutrisight.ui.adapter.SliderAdapter
-import com.capstone.nutrisight.ui.model.MainViewModelFactory
+import com.capstone.nutrisight.ui.model.factory.MainViewModelFactory
 import com.capstone.nutrisight.ui.model.SettingViewModel
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch

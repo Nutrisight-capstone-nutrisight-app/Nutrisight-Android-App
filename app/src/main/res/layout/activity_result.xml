@@ -331,14 +331,33 @@
             app:layout_constraintBottom_toTopOf="@+id/btn_save_result"
             app:layout_constraintTop_toBottomOf="@+id/card_view_result">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/nutritional_information"
-                android:textStyle="bold"
-                android:textSize="24sp"
-                android:textColor="@color/black_white"
-                />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nutritional_information"
+                    android:textStyle="bold"
+                    android:textSize="24sp"
+                    android:textColor="@color/black_white"
+                    />
+
+                <ImageButton
+                    android:id="@+id/info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center|end"
+                    android:contentDescription="@string/main_information_about_nutrition"
+                    android:foregroundGravity="center"
+                    android:background="@android:color/transparent"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/round_info_outline_24"/>
+
+            </LinearLayout>
+
 
             <View
                 android:layout_width="match_parent"

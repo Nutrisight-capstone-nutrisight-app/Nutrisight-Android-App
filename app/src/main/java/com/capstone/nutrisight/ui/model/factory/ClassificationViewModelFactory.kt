@@ -1,10 +1,10 @@
-package com.capstone.nutrisight.ui.model
+package com.capstone.nutrisight.ui.model.factory
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.nutrisight.di.Injection
 import com.capstone.nutrisight.repository.ClassificationRepository
+import com.capstone.nutrisight.ui.model.ClassificationViewModel
 
 class ClassificationViewModelFactory(
     private val classificationRepository: ClassificationRepository

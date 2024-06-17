@@ -8,9 +8,22 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.SettingsActivity">
 
+
+    <ImageButton
+        android:id="@+id/btn_back_settings_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/logo_of_arrow"
+        android:src="@drawable/round_arrow_back_ios_24"
+        android:backgroundTint="@android:color/transparent"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
     <TextView
         android:id="@+id/tv_settings"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/settings"
         android:textColor="@color/black_white"
@@ -22,15 +35,72 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
+
+    <TextView
+        android:id="@+id/tv_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Profile"
+        android:layout_margin="32dp"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_settings"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_setting_profile"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="16dp"
+
+        android:backgroundTint="@color/main_green"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/username_settings"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:text="Taffan"
+                android:textColor="@color/white"
+                android:layout_marginStart="32dp"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/logo_of_arrow"
+                app:icon="@drawable/round_keyboard_arrow_right_24"
+                app:iconSize="32dp"
+                android:backgroundTint="@android:color/transparent"
+                android:layout_gravity="center"
+               />
+        </LinearLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
     <TextView
         android:id="@+id/tv_preferences"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/preferences"
         android:textColor="@color/grey_text"
-        android:layout_margin="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
         android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@+id/tv_settings"
+        app:layout_constraintTop_toBottomOf="@+id/card_setting_profile"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <androidx.cardview.widget.CardView
@@ -95,7 +165,7 @@
         android:contentDescription="@string/logo_of_arrow"
         android:src="@drawable/round_keyboard_arrow_right_24"
         android:backgroundTint="@android:color/transparent"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_language"
         app:layout_constraintBottom_toBottomOf="@+id/tv_language"/>
@@ -117,7 +187,7 @@
         android:id="@+id/switch_darkmode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="32dp"
         style="@style/Widget.Custom.MaterialSwitch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_darkmode"

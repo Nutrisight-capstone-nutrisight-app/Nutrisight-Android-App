@@ -37,7 +37,7 @@
         android:id="@+id/edt_email"
         android:layout_width="0dp"
         android:layout_height="56dp"
-        android:layout_marginBottom="22dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginHorizontal="36dp"
         android:autofillHints="emailAddress"
         android:drawableStart="@drawable/baseline_email_24"
@@ -72,7 +72,7 @@
         android:background="@drawable/custom_loginedttext"
         />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -82,6 +82,7 @@
         android:elevation="4dp"
         android:padding="12dp"
         android:translationY="4dp"
+        app:cornerRadius="20dp"
         android:textColor="@color/white"
         android:stateListAnimator="@null"
         android:layout_marginBottom="8dp"
@@ -89,7 +90,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_register"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -100,6 +101,7 @@
         android:elevation="4dp"
         android:padding="12dp"
         android:translationY="4dp"
+        app:cornerRadius="20dp"
         android:stateListAnimator="@null"
         android:backgroundTint="@color/background_color"
         android:layout_marginBottom="36dp"

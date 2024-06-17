@@ -3,6 +3,8 @@ package com.capstone.nutrisight.repository
 import com.capstone.nutrisight.data.api.service.RegisterLoginApiService
 import com.capstone.nutrisight.data.response.LoginResponse
 import com.capstone.nutrisight.data.response.RegisterDeleteResponse
+import com.capstone.nutrisight.data.response.User
+import com.capstone.nutrisight.data.response.UserResponse
 import com.capstone.nutrisight.preferences.SettingsPreferences
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -28,6 +30,24 @@ class RegisterLoginRepository private constructor(
     suspend fun logout(): RegisterDeleteResponse {
         return withContext(Dispatchers.IO) {
             registerLoginApiService.logout()
+        }
+    }
+
+    suspend fun getUser(): UserResponse {
+        return withContext(Dispatchers.IO) {
+            registerLoginApiService.getUser()
+        }
+    }
+
+    suspend fun updateUser(user: User): UserResponse {
+        return withContext(Dispatchers.IO) {
+            registerLoginApiService.updateUser(user)
+        }
+    }
+
+    suspend fun deleteUser(): UserResponse {
+        return withContext(Dispatchers.IO) {
+            registerLoginApiService.deleteUser()
         }
     }
 

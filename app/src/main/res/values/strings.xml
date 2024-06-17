@@ -87,4 +87,12 @@
     <string name="must_fill">You must fill this field</string>
     <string name="warning_for_user">Warning for user</string>
     <string name="failed_to_upload_image_please_try_again">Failed to upload image, please try again</string>
+    <string name="main_information_about_nutrition">Main information about nutrition</string>
+    <string name="desc_sugar">The American Heart Association (AHA) recommends that children and teens (ages 2–18) consume no more than 25 grams (6 teaspoons) of added sugars per day. For adults, the AHA advises men to limit their intake of added sugars to no more than 36 grams (9 teaspoons) per day and women to no more than 25 grams (6 teaspoons) per day.</string>
+    <string name="desc_salt">The recommended sodium intake varies by age and sex. For children aged 2-13 years, the intake should generally range from 1,200 to 2,300 milligrams (mg) per day. Teens aged 14-18 years should consume no more than 2,300 mg per day. For adults, the American Heart Association (AHA) recommends no more than 2,300 mg of sodium per day, ideally aiming for less than 1,500 mg for most adults.</string>
+    <string name="desc_fat">For children aged 2-3 years, 30-35% of total daily calories should come from fat. For children and teens aged 4-18 years, 25-35% of total daily calories should come from fat. For adults, the Dietary Guidelines for Americans suggest that 20-35% of your daily calories come from fat. Within these limits, saturated fat should be less than 10% of total daily calories, and trans fats should be avoided as much as possible, aiming for zero consumption.</string>
+    <string name="risk_sugar">Health Risks : Excessive sugar consumption is linked to obesity, type 2 diabetes, heart disease, and dental problems.</string>
+    <string name="risk_salt">Health Risks : High sodium intake is associated with increased blood pressure, which can lead to heart disease, stroke, and kidney damage.</string>
+    <string name="risk_fat">Health Risks : Excessive intake of unhealthy fats, can lead to obesity and increase the risk of type 2 diabetes, hypertension, and certain cancers. It also contributes to fatty liver disease, potentially causing liver inflammation and damage.</string>
+
 </resources>

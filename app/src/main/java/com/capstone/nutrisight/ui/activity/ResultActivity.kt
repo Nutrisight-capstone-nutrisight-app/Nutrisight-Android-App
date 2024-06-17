@@ -1,6 +1,8 @@
 package com.capstone.nutrisight.ui.activity
 
 import android.annotation.SuppressLint
+import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -15,6 +17,8 @@ import com.bumptech.glide.Glide
 import com.capstone.nutrisight.R
 import com.capstone.nutrisight.data.response.ClassificationResponse
 import com.capstone.nutrisight.databinding.ActivityResultBinding
+import com.capstone.nutrisight.databinding.DialogInfoBinding
+import com.capstone.nutrisight.databinding.DialogRegisterSuccessBinding
 
 class ResultActivity : AppCompatActivity() {
     private lateinit var binding: ActivityResultBinding
@@ -31,6 +35,10 @@ class ResultActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
             )
+        }
+
+        binding.info.setOnClickListener {
+            showInfoDialog()
         }
 
         @Suppress("DEPRECATION")
@@ -100,6 +108,19 @@ class ResultActivity : AppCompatActivity() {
             .load(response.product.url)
             .into(binding.imgSavedFood)
 
+    }
+
+    private fun showInfoDialog() {
+        val dialog = Dialog(this)
+        val binding: DialogInfoBinding = DialogInfoBinding.inflate(layoutInflater)
+        dialog.setContentView(binding.root)
+        dialog.setCancelable(true)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        binding.infoExit.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
     }
 
     private fun getBackgroundColorForGrade(grade: String?): Int {

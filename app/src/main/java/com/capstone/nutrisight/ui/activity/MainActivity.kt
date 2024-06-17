@@ -4,17 +4,9 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import android.Manifest
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import com.capstone.nutrisight.R
 import com.capstone.nutrisight.databinding.ActivityMainBinding
 import com.capstone.nutrisight.ui.fragment.DashboardFragment
@@ -23,12 +15,16 @@ import com.capstone.nutrisight.ui.fragment.ProfileFragment
 import com.capstone.nutrisight.ui.fragment.SavedFragment
 import com.capstone.nutrisight.ui.fragment.ScanBottomSheet
 import com.capstone.nutrisight.ui.model.ArticleViewModel
-import com.capstone.nutrisight.ui.model.MainViewModelFactory
+import com.capstone.nutrisight.ui.model.UserViewModel
+import com.capstone.nutrisight.ui.model.factory.MainViewModelFactory
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var scanBottomSheet: ScanBottomSheet
     private val articleViewModel: ArticleViewModel by viewModels<ArticleViewModel>() {
+        MainViewModelFactory.getInstance(applicationContext)
+    }
+    private val userViewModel: UserViewModel by viewModels<UserViewModel>() {
         MainViewModelFactory.getInstance(applicationContext)
     }
 
@@ -49,6 +45,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         scanBottomSheet = ScanBottomSheet()
+        scanBottomSheet.dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
 
         binding.fabScan.setOnClickListener {
             openBottomSheet()
@@ -77,7 +75,20 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container, fragment)
+        val dashboardFragment = if (fragment is DashboardFragment) {
+            fragment.apply {
+                setArticleViewModel(articleViewModel)
+                setUserViewModel(userViewModel)
+            }
+        } else if (fragment is ProfileFragment) {
+            fragment.apply {
+                setUserViewModel(userViewModel)
+            }
+        } else {
+            fragment
+        }
+
+        transaction.replace(R.id.container, dashboardFragment)
         transaction.commit()
     }
 

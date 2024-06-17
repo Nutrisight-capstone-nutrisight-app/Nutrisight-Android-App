@@ -5,27 +5,18 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.nutrisight.R
 import com.capstone.nutrisight.databinding.ActivityRegisterBinding
 import com.capstone.nutrisight.databinding.DialogRegisterFailedBinding
 import com.capstone.nutrisight.databinding.DialogRegisterSuccessBinding
-import com.capstone.nutrisight.ui.model.MainViewModelFactory
+import com.capstone.nutrisight.ui.model.factory.MainViewModelFactory
 import com.capstone.nutrisight.ui.model.RegisterViewModel
-import com.capstone.nutrisight.ui.model.SettingViewModel
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding

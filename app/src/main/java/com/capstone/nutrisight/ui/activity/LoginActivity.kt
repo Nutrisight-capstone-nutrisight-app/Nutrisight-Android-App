@@ -1,32 +1,24 @@
 package com.capstone.nutrisight.ui.activity
 
 import android.app.Dialog
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.capstone.nutrisight.R
 import com.capstone.nutrisight.databinding.ActivityLoginBinding
 import com.capstone.nutrisight.preferences.SettingsPreferences
 import com.capstone.nutrisight.preferences.dataStore
 import com.capstone.nutrisight.ui.model.LoginViewModel
-import com.capstone.nutrisight.ui.model.MainViewModelFactory
+import com.capstone.nutrisight.ui.model.factory.MainViewModelFactory
 import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
@@ -72,8 +64,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         viewModel.error.observe(this) { errorMessage ->
-            Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
-            Log.d("LoginActivity", "Error: $errorMessage")
+            handleError(errorMessage)
             showLoading(false)
         }
 
@@ -100,6 +91,16 @@ class LoginActivity : AppCompatActivity() {
             }
         } else {
             Toast.makeText(this, R.string.empty_field, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun handleError(error: String) {
+        when (error) {
+            "Invalid email or password" -> {
+                Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+            } else -> {
+                Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

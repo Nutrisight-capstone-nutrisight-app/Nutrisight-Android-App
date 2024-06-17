@@ -1,24 +1,17 @@
 package com.capstone.nutrisight.ui.activity
 
 import android.app.Dialog
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.view.WindowManager
 import android.widget.CompoundButton
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.capstone.nutrisight.R
 import com.capstone.nutrisight.databinding.ActivitySettingsBinding
@@ -26,7 +19,7 @@ import com.capstone.nutrisight.databinding.DialogLanguageBinding
 import com.capstone.nutrisight.databinding.DialogLogoutBinding
 import com.capstone.nutrisight.preferences.SettingsPreferences
 import com.capstone.nutrisight.preferences.dataStore
-import com.capstone.nutrisight.ui.model.MainViewModelFactory
+import com.capstone.nutrisight.ui.model.factory.MainViewModelFactory
 import com.capstone.nutrisight.ui.model.SettingViewModel
 import kotlinx.coroutines.launch
 import java.util.Locale
@@ -82,6 +75,12 @@ class SettingsActivity : AppCompatActivity() {
 
         binding.switchDarkmode.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
             settingViewModel.saveThemeSetting(isChecked)
+        }
+
+        binding.btnBackSettingsMain.setOnClickListener {
+            val intent = Intent(this@SettingsActivity, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
 

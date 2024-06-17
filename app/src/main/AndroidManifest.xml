@@ -20,6 +20,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activity.EditActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.ResultActivity"
             android:exported="false" />
         <activity

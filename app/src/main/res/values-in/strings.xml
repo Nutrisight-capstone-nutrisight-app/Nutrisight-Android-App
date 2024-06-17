@@ -86,4 +86,14 @@
     <string name="warning_text">Untuk klasifikasi dan deteksi yang lebih baik, pastikan data input akurat, gunakan gambar berkualitas tinggi, dan latar belakang yang jelas.</string>
     <string name="must_fill">Anda harus mengisi bidang ini</string>
     <string name="warning_for_user">Peringatan untuk pengguna</string>
+    <string name="failed_to_upload_image_please_try_again">Gagal mengunggah gambar, silakan coba lagi</string>
+    <string name="main_information_about_nutrition">Informasi utama tentang nutrisi</string>
+    <string name="desc_sugar">Asosiasi Jantung Amerika (AHA) merekomendasikan agar anak–anak dan remaja (usia 2–18 tahun) tidak mengonsumsi lebih dari 25 gram (6 sendok teh) gula tambahan per hari. Untuk orang dewasa, AHA menyarankan agar pria membatasi asupan gula tambahan mereka maksimal 36 gram (9 sendok teh) per hari dan wanita maksimal 25 gram (6 sendok teh) per hari.</string>
+    <string name="desc_salt">Asupan natrium yang direkomendasikan bervariasi berdasarkan usia dan jenis kelamin. Untuk anak–anak usia 2–13 tahun, asupannya umumnya harus berkisar antara 1.200 hingga 2.300 miligram (mg) per hari. Remaja usia 14–18 tahun sebaiknya tidak mengonsumsi lebih dari 2.300 mg per hari. Untuk orang dewasa, Asosiasi Jantung Amerika (AHA) merekomendasikan tidak lebih dari 2.300 mg natrium per hari, idealnya kurang dari 1.500 mg untuk kebanyakan orang dewasa.</string>
+    <string name="desc_fat">Untuk anak–anak usia 2–3 tahun, sekitar 30–35% dari total kalori harian harus berasal dari lemak. Untuk anak–anak dan remaja usia 4–18 tahun, sekitar 25–35% dari total kalori harian harus berasal dari lemak. Untuk orang dewasa, Pedoman Diet untuk Warga Amerika menyarankan agar 20–35% dari kalori harian Anda berasal dari lemak. Dalam batas ini, lemak jenuh seharusnya kurang dari 10% dari total kalori harian, dan lemak trans sebaiknya dihindari sebanyak mungkin, dengan tujuan konsumsi nol.</string>
+    <string name="risk_sugar">Risiko Kesehatan : Konsumsi gula berlebihan terkait dengan obesitas, diabetes tipe 2, penyakit jantung, dan masalah gigi.</string>
+    <string name="risk_salt">Risiko Kesehatan : Asupan natrium tinggi berhubungan dengan peningkatan tekanan darah, yang dapat menyebabkan penyakit jantung, stroke, dan kerusakan ginjal.</string>
+    <string name="risk_fat">Risiko Kesehatan : Konsumsi lemak tidak sehat yang berlebihan dapat menyebabkan obesitas dan meningkatkan risiko diabetes tipe 2, hipertensi, dan beberapa jenis kanker. Ini juga berkontribusi terhadap penyakit hati berlemak, yang dapat menyebabkan peradangan dan kerusakan hati.</string>
+
+
 </resources>
