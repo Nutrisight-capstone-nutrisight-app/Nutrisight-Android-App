@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.capstone.nutrisight.data.response.ClassificationResponse
 import com.capstone.nutrisight.repository.ClassificationRepository
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withTimeout
 import okhttp3.MultipartBody
 import java.io.File
 import java.io.IOException
@@ -22,21 +23,23 @@ class ClassificationViewModel(private val classificationRepository: Classificati
 
     fun upload(image: MultipartBody.Part) {
         viewModelScope.launch {
-            _isLoading.value = true
+            _isLoading.postValue(true)
             try {
-                val response = classificationRepository.upload(image)
-                _classificationResponse.value = response
+                withTimeout(15_000) {
+                    val response = classificationRepository.upload(image)
+                    _classificationResponse.value = response
+                }
             } catch (e: SocketTimeoutException) {
                 Log.d("ClassificationViewModel", "upload: Socket timeout")
-                _isLoading.value = false
+                _isLoading.postValue(false)
             } catch (e: IOException) {
                 Log.d("ClassificationViewModel", "upload: Network error")
-                _isLoading.value = false
+                _isLoading.postValue(false)
             } catch (e: Exception) {
                 Log.d("ClassificationViewModel", "upload: ${e.message}")
-                _isLoading.value = false
+                _isLoading.postValue(false)
             } finally {
-                _isLoading.value = false
+                _isLoading.postValue(false)
             }
         }
     }

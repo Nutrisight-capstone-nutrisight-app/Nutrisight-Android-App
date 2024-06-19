@@ -29,7 +29,6 @@ class LoginViewModel(private val registerLoginRepository: RegisterLoginRepositor
                 _loginResponse.value = response
             } catch (e: Exception) {
                 val errorResponse = parseErrorResponse(e)
-                _error.value = errorResponse
             } finally {
                 _isLoading.value = false
             }

@@ -94,6 +94,31 @@
     <string name="risk_sugar">健康リスク：過剰な糖分摂取は肥満、2型糖尿病、心臓病、および歯の問題と関連しています。</string>
     <string name="risk_salt">健康リスク：高いナトリウム摂取は血圧の上昇と関連し、心臓病、脳卒中、および腎損傷を引き起こす可能性があります。</string>
     <string name="risk_fat">健康リスク：不健康な脂肪の過剰摂取は肥満を引き起こし、2型糖尿病、高血圧、および特定のがんのリスクを増加させる可能性があります。また、脂肪肝症にも寄与し、肝臓の炎症や損傷を引き起こす可能性があります。</string>
+    <string name="error_fetch_article">記事データの取得エラー… 後でもう一度お試しください</string>
+    <string name="about_nutrition">栄養について</string>
+    <string name="about_grading">採点について</string>
+    <string name="explanation">説明</string>
+    <string name="grade_a_dark_green">グレードA（ダークグリーン）</string>
+    <string name="desc_grade_A">説明：これは最高のグレードであり、優れた品質やパフォーマンスを示します。このグレードの製品は、栄養価やその他の評価基準において最高とされています。</string>
+    <string name="grade_b_light_green">グレードB（ライトグリーン）</string>
+    <string name="desc_grade_b">説明：このグレードは良質を示します。このグレードの製品は平均以上であり、その有益な特性から推奨されますが、グレードAほど最適ではありません。</string>
+    <string name="grade_c_yellow">グレードC（イエロー）</string>
+    <string name="desc_grade_c">説明：このグレードは平均的な品質の製品に与えられます。これらの製品は一般的に受け入れられますが、より高いグレードの製品と比べて優れた特性を持たない場合があります。</string>
+    <string name="grade_d_orange">グレードD（オレンジ）</string>
+    <string name="desc_grade_d">説明：このグレードは平均以下の品質を示します。このグレードの製品にはいくつかの欠点があり、より高いグレードと比較して推奨されることが少ないです。</string>
+    <string name="grade_e_red">グレードE（レッド）</string>
+    <string name="desc_grade_e">説明：これは最低のグレードであり、品質が低いことを示します。このグレードの製品は大きな欠点を持つ可能性があり、栄養価が低い場合がありますので、推奨されません。</string>
+    <string name="my_account">マイアカウント</string>
+    <string name="delete_my_account">アカウントを削除</string>
+    <string name="set_new_password">新しいパスワードを設定</string>
+    <string name="warning_delete">アカウントを削除すると、アカウントと関連するすべてのデータが永久に削除されます。この操作は取り消せません。</string>
+    <string name="confirm_delete">このアカウントを削除してもよろしいですか？</string>
+    <string name="failed_update">ユーザーの更新に失敗しました</string>
+    <string name="edit_success">アカウントが正常に編集されました</string>
+    <string name="edit_failed">編集に失敗しました。もう一度お試しください。</string>
+    <string name="same_field">更新が必要です：情報を変更して続行してください。</string>
+    <string name="text_profile">プロフィール</string>
+
 
 
 </resources>

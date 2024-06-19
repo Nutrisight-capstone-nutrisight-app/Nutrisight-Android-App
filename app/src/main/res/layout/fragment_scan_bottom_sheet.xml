@@ -4,11 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/background_color"
     app:cardBackgroundColor="@color/background_color"
     app:strokeColor="@android:color/transparent"
     app:strokeWidth="0dp"
     app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialCardView.Cut.Bottom"
+    app:insetForeground="@android:color/transparent"
     android:theme="@style/Theme.Material.Main"
     tools:context=".ui.fragment.ScanBottomSheet">
 

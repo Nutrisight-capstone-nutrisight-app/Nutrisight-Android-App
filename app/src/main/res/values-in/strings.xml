@@ -94,6 +94,31 @@
     <string name="risk_sugar">Risiko Kesehatan : Konsumsi gula berlebihan terkait dengan obesitas, diabetes tipe 2, penyakit jantung, dan masalah gigi.</string>
     <string name="risk_salt">Risiko Kesehatan : Asupan natrium tinggi berhubungan dengan peningkatan tekanan darah, yang dapat menyebabkan penyakit jantung, stroke, dan kerusakan ginjal.</string>
     <string name="risk_fat">Risiko Kesehatan : Konsumsi lemak tidak sehat yang berlebihan dapat menyebabkan obesitas dan meningkatkan risiko diabetes tipe 2, hipertensi, dan beberapa jenis kanker. Ini juga berkontribusi terhadap penyakit hati berlemak, yang dapat menyebabkan peradangan dan kerusakan hati.</string>
+    <string name="error_fetch_article">Error saat mengambil data artikel… Silakan coba lagi nanti</string>
+    <string name="about_nutrition">Tentang Gizi</string>
+    <string name="about_grading">Tentang Penilaian</string>
+    <string name="explanation">Penjelasan</string>
+    <string name="grade_a_dark_green">Grade A (Hijau Gelap)</string>
+    <string name="desc_grade_A">Deskripsi: Ini merupakan grade tertinggi, menunjukkan kualitas atau kinerja yang sangat baik. Produk dengan grade ini dianggap terbaik dalam hal nilai gizinya atau kriteria lain yang dinilai.</string>
+    <string name="grade_b_light_green">Grade B (Hijau Terang)</string>
+    <string name="desc_grade_b">Deskripsi: Grade ini menandakan kualitas baik. Produk dengan grade ini di atas rata-rata dan direkomendasikan karena sifat-sifat bermanfaatnya, meskipun tidak seoptimal Grade A.</string>
+    <string name="grade_c_yellow">Grade C (Kuning)</string>
+    <string name="desc_grade_c">Deskripsi: Grade ini diberikan kepada produk dengan kualitas rata-rata. Meskipun produk-produk ini secara umum dapat diterima, mereka mungkin tidak memiliki kualitas unggul seperti grade yang lebih tinggi.</string>
+    <string name="grade_d_orange">Grade D (Oranye)</string>
+    <string name="desc_grade_d">Deskripsi: Grade ini menunjukkan kualitas di bawah rata-rata. Produk dengan grade ini mungkin memiliki beberapa kekurangan dan kurang direkomendasikan dibandingkan dengan grade yang lebih tinggi.</string>
+    <string name="grade_e_red">Grade E (Merah)</string>
+    <string name="desc_grade_e">Deskripsi: Ini adalah grade terendah, menunjukkan kualitas buruk. Produk dengan grade ini tidak direkomendasikan karena mungkin memiliki kekurangan signifikan atau nilai gizi yang lebih rendah.</string>
+    <string name="my_account">Akun Saya</string>
+    <string name="delete_my_account">Hapus Akun Saya</string>
+    <string name="set_new_password">Atur kata sandi baru</string>
+    <string name="warning_delete">Menghapus akun akan secara permanen menghapus akun dan semua data yang terkait. Tindakan ini tidak dapat dibatalkan.</string>
+    <string name="confirm_delete">Apakah Anda yakin ingin menghapus akun ini?</string>
+    <string name="failed_update">Gagal memperbarui pengguna</string>
+    <string name="edit_success">Akun Anda berhasil diedit</string>
+    <string name="edit_failed">Gagal mengedit, silakan coba lagi</string>
+    <string name="same_field">Pembaruan diperlukan: Silakan ubah informasi Anda untuk melanjutkan.</string>
+    <string name="text_profile">Profil</string>
+
 
 
 </resources>

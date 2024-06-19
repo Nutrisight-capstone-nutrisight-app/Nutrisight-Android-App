@@ -1,6 +1,7 @@
 package com.capstone.nutrisight.ui.fragment
 
 import android.Manifest
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -19,7 +20,13 @@ import androidx.core.content.ContextCompat
 import com.capstone.nutrisight.R
 import com.capstone.nutrisight.databinding.FragmentScanBottomSheetBinding
 import com.capstone.nutrisight.ui.activity.CameraActivity
+import com.capstone.nutrisight.ui.activity.MainActivity
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
 
 
 class ScanBottomSheet : BottomSheetDialogFragment() {
@@ -31,6 +38,10 @@ class ScanBottomSheet : BottomSheetDialogFragment() {
     private lateinit var launcherGallery: ActivityResultLauncher<PickVisualMediaRequest>
 
 
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return BottomSheetDialog(requireContext(), R.style.TransparentBottomSheetDialog)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,10 +63,14 @@ class ScanBottomSheet : BottomSheetDialogFragment() {
             if (uri != null) {
                 currentImageUri = uri
                 Toast.makeText(requireContext(), "Media selected: $uri", Toast.LENGTH_SHORT).show()
+                (activity as? MainActivity)?.processSelectedImage(uri)
+                dismiss()
             } else {
                 Log.d("Photo Picker", "No media selected")
             }
         }
+
+
     }
 
     override fun onCreateView(
@@ -97,6 +112,7 @@ class ScanBottomSheet : BottomSheetDialogFragment() {
     private fun startGallery() {
         launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
     }
+
 
     companion object {
         private const val REQUIRED_PERMISSION = Manifest.permission.CAMERA

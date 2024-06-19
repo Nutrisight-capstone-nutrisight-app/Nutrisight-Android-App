@@ -2,10 +2,11 @@ package com.capstone.nutrisight.ui.activity
 
 import android.annotation.SuppressLint
 import android.app.Dialog
-import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -14,38 +15,45 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.capstone.nutrisight.R
 import com.capstone.nutrisight.data.response.ClassificationResponse
-import com.capstone.nutrisight.databinding.ActivityResultBinding
+import com.capstone.nutrisight.data.response.DetailResponse
+import com.capstone.nutrisight.databinding.ActivityDetailBinding
 import com.capstone.nutrisight.databinding.DialogInfoBinding
 import com.capstone.nutrisight.databinding.DialogInfoGradeBinding
-import com.capstone.nutrisight.databinding.DialogRegisterSuccessBinding
-import com.capstone.nutrisight.ui.model.LoginViewModel
+import com.capstone.nutrisight.ui.model.DetailViewModel
 import com.capstone.nutrisight.ui.model.ProductViewModel
 import com.capstone.nutrisight.ui.model.factory.MainViewModelFactory
-import kotlinx.coroutines.launch
 
-class ResultActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityResultBinding
+class DetailActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityDetailBinding
     private val factory: MainViewModelFactory = MainViewModelFactory.getInstance(this)
-    private val viewModel: ProductViewModel by viewModels {
+    private val viewModel: DetailViewModel by viewModels {
         factory
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityResultBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        binding = ActivityDetailBinding.inflate(layoutInflater)
         window.statusBarColor = Color.TRANSPARENT
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.setDecorFitsSystemWindows(false)
         } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-            )
+            window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        }
+        setContentView(binding.root)
+
+        val productId = intent.getStringExtra(PRODUCT_ID)
+        Log.d("DetailActivity", "Received Product ID: $productId")
+        productId?.let { viewModel.getDetailProduct(id = it) }
+
+        viewModel.detailProduct.observe(this) { response ->
+            if (response != null) {
+                displayResult(response)
+            } else {
+                Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+            }
+
         }
 
         binding.info.setOnClickListener {
@@ -56,37 +64,11 @@ class ResultActivity : AppCompatActivity() {
             showInfoGradeDialog()
         }
 
-        viewModel.uploadProduct.observe(this) { response ->
-            Toast.makeText(this, response.message, Toast.LENGTH_SHORT).show()
-            val intent = Intent(this@ResultActivity, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-
-
-        @Suppress("DEPRECATION")
-        val response = intent.getParcelableExtra<ClassificationResponse>("classification_response")
-        if (response != null) {
-            displayResult(response)
-            uploadSavedFood(response)
-        } else {
-            Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun uploadSavedFood(response: ClassificationResponse) {
-        binding.btnSaveResult.setOnClickListener {
-            val id = response.product.id
-            if (id != null) {
-                viewModel.uploadProduct(id)
-            }
-        }
 
     }
 
     @SuppressLint("SetTextI18n")
-    private fun displayResult(response: ClassificationResponse) {
+    private fun displayResult(response: DetailResponse) {
         // all grade
         val grade = response.product.gradeAll
         val cardViewBackgroundColor = getBackgroundColorForGrade(grade)
@@ -145,6 +127,30 @@ class ResultActivity : AppCompatActivity() {
 
     }
 
+
+
+    private fun getBackgroundColorForGrade(grade: String?): Int {
+        return when (grade) {
+            "A" -> R.color.bg_grade_a
+            "B" -> R.color.bg_grade_b
+            "C" -> R.color.bg_grade_c
+            "D" -> R.color.bg_grade_d
+            "E" -> R.color.bg_grade_e
+            else -> com.google.android.material.R.color.design_default_color_background
+        }
+    }
+
+    private fun getTextColorForGrade(grade: String?): Int {
+        return when (grade) {
+            "A" -> R.color.text_grade_a
+            "B" -> R.color.text_grade_b
+            "C" -> R.color.text_grade_c
+            "D" -> R.color.text_grade_d
+            "E" -> R.color.text_grade_e
+            else -> com.google.android.material.R.color.design_default_color_background
+        }
+    }
+
     private fun showInfoDialog() {
         val dialog = Dialog(this)
         val binding: DialogInfoBinding = DialogInfoBinding.inflate(layoutInflater)
@@ -171,25 +177,8 @@ class ResultActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun getBackgroundColorForGrade(grade: String?): Int {
-        return when (grade) {
-            "A" -> R.color.bg_grade_a
-            "B" -> R.color.bg_grade_b
-            "C" -> R.color.bg_grade_c
-            "D" -> R.color.bg_grade_d
-            "E" -> R.color.bg_grade_e
-            else -> com.google.android.material.R.color.design_default_color_background
-        }
-    }
 
-    private fun getTextColorForGrade(grade: String?): Int {
-        return when (grade) {
-            "A" -> R.color.text_grade_a
-            "B" -> R.color.text_grade_b
-            "C" -> R.color.text_grade_c
-            "D" -> R.color.text_grade_d
-            "E" -> R.color.text_grade_e
-            else -> com.google.android.material.R.color.design_default_color_background
-        }
+    companion object {
+        const val PRODUCT_ID = "product_id"
     }
 }

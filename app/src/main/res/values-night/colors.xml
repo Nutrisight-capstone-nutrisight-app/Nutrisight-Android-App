@@ -9,5 +9,6 @@
     <color name="black_white">#FFFFFF</color>
     <color name="custom_thumb_color">#FFFFFF</color>
     <color name="grey_text">#718792</color>
+    <color name="red_text">#FFFFFF</color>
 
 </resources>

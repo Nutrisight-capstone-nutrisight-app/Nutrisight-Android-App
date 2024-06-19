@@ -28,10 +28,7 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySettingsBinding
     private lateinit var settingsPreferences: SettingsPreferences
     private val factory: MainViewModelFactory = MainViewModelFactory.getInstance(this)
-    private val settingViewModel: SettingViewModel by viewModels {
-        factory
-    }
-
+    private val settingViewModel: SettingViewModel by viewModels { factory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,10 +37,7 @@ class SettingsActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.setDecorFitsSystemWindows(false)
         } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-            )
+            window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         }
         setContentView(binding.root)
 
@@ -57,7 +51,7 @@ class SettingsActivity : AppCompatActivity() {
             showLanguageDialog()
         }
 
-        settingViewModel.getThemeSettings().observe(this) {isDarkModeActive: Boolean ->
+        settingViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
             if (isDarkModeActive) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 binding.switchDarkmode.isChecked = true
@@ -67,11 +61,29 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
 
-        settingViewModel.getLanguage().observe(this) {language ->
+        settingViewModel.getLanguage().observe(this) { language ->
             setLocale(language)
         }
 
+        val username = intent.getStringExtra("username")
+        val email = intent.getStringExtra("email")
+        binding.usernameSettings.text = username
 
+        binding.cardSettingProfile.setOnClickListener {
+            val intent = Intent(this@SettingsActivity, EditActivity::class.java)
+            intent.putExtra("username", username)
+            intent.putExtra("email", email)
+            startActivity(intent)
+            finish()
+        }
+
+        binding.btnEdit.setOnClickListener {
+            val intent = Intent(this@SettingsActivity, EditActivity::class.java)
+            intent.putExtra("username", username)
+            intent.putExtra("email", email)
+            startActivity(intent)
+            finish()
+        }
 
         binding.switchDarkmode.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
             settingViewModel.saveThemeSetting(isChecked)
@@ -83,9 +95,7 @@ class SettingsActivity : AppCompatActivity() {
             finish()
         }
 
-
         onBackPressedCallback()
-
     }
 
     private fun showLogoutDialog() {
@@ -118,8 +128,6 @@ class SettingsActivity : AppCompatActivity() {
         dialog.setContentView(binding.root)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.setCancelable(true)
-
-
 
         binding.btnConfirm.setOnClickListener {
             val id = binding.radioLanguage.checkedRadioButtonId

@@ -104,7 +104,7 @@
         app:cornerRadius="20dp"
         android:stateListAnimator="@null"
         android:backgroundTint="@color/background_color"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="42dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>

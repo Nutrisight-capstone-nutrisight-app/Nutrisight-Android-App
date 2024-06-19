@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/welcome"
-            android:textColor="@color/black_white"
+            android:textColor="@color/grey_text"
             android:layout_marginStart="32dp"
             android:layout_marginTop="56dp"
             android:textSize="32sp"
@@ -191,6 +191,18 @@
             card_view:layout_constraintTop_toBottomOf="@+id/tv_article"
             card_view:layout_constraintStart_toStartOf="parent"
             />
+        
+        <TextView
+            android:id="@+id/error_fetch_article"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:text="Error, fetching article data.... Please try again later"
+            card_view:layout_constraintTop_toTopOf="@+id/rv_article"
+            card_view:layout_constraintBottom_toBottomOf="@+id/rv_article"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            />
 
         <ProgressBar
             android:id="@+id/progressBarArticle"
@@ -203,28 +215,6 @@
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"/>
 
-        <TextView
-            android:id="@+id/tv_recommended_food"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/recommended_food"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:textColor="@color/black_white"
-            card_view:layout_constraintTop_toBottomOf="@+id/rv_article"
-            card_view:layout_constraintStart_toStartOf="parent"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scrollbars="none"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_recommended_food"
-            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

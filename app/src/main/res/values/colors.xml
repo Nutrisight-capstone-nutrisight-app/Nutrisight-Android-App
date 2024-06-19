@@ -19,6 +19,7 @@
     <color name="bg_card_food">#B2533E</color>
     <color name="bg_card_drink">#7BC9FF</color>"
     <color name="red">#E0404D</color>
+    <color name="red_text">#E0404D</color>
     <color name="red_20">#FEEFEE</color>
     <color name="custom_thumb_color">#FFFFFF</color>
 

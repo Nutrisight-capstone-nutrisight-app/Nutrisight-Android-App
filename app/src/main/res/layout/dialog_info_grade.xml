@@ -1,0 +1,283 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginHorizontal="16dp">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/background_color"
+        app:cardCornerRadius="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/about_grading"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:textSize="24sp"
+                    android:textColor="@color/black_white"
+                    />
+
+                <ImageButton
+                    android:id="@+id/info_exit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center|end"
+                    android:contentDescription="@string/main_information_about_nutrition"
+                    android:foregroundGravity="center"
+                    android:layout_marginEnd="8dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/rounded_cancel_24"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/black_white"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginTop="32dp"
+                android:gravity="center">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="54dp"
+                    android:layout_height="54dp"
+                    android:elevation="8dp"
+                    app:cardCornerRadius="10dp"
+                    android:backgroundTint="@color/bg_grade_a">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/a"
+                        android:textColor="@color/text_grade_a"
+                        android:textStyle="bold"
+                        android:textSize="32sp"
+                        android:layout_gravity="center"
+                        android:gravity="center" />
+
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="54dp"
+                    android:layout_height="54dp"
+                    android:elevation="8dp"
+                    app:cardCornerRadius="10dp"
+                    android:backgroundTint="@color/bg_grade_b">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/b"
+                        android:textColor="@color/text_grade_b"
+                        android:textStyle="bold"
+                        android:textSize="32sp"
+                        android:layout_gravity="center"
+                        android:gravity="center" />
+
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="54dp"
+                    android:layout_height="54dp"
+                    android:elevation="8dp"
+                    app:cardCornerRadius="10dp"
+                    android:backgroundTint="@color/bg_grade_c">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/c"
+                        android:textColor="@color/text_grade_c"
+                        android:textStyle="bold"
+                        android:textSize="32sp"
+                        android:layout_gravity="center"
+                        android:gravity="center" />
+
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="54dp"
+                    android:layout_height="54dp"
+                    android:elevation="8dp"
+                    app:cardCornerRadius="10dp"
+                    android:backgroundTint="@color/bg_grade_d">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/d"
+                        android:textColor="@color/text_grade_d"
+                        android:textStyle="bold"
+                        android:textSize="32sp"
+                        android:layout_gravity="center"
+                        android:gravity="center" />
+
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="54dp"
+                    android:layout_height="54dp"
+                    android:elevation="8dp"
+                    app:cardCornerRadius="10dp"
+                    android:backgroundTint="@color/bg_grade_e">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/e"
+                        android:textColor="@color/text_grade_e"
+                        android:textStyle="bold"
+                        android:textSize="32sp"
+                        android:layout_gravity="center"
+                        android:gravity="center" />
+
+
+
+                </androidx.cardview.widget.CardView>
+
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/explanation"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp"
+                android:textColor="@color/black_white"
+                android:layout_marginTop="16dp"
+                android:layout_gravity="center"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/black_white"
+                android:layout_marginBottom="4dp"
+                android:text="@string/grade_a_dark_green"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:justificationMode="inter_word"
+                android:layout_marginBottom="4dp"
+                android:textColor="@color/black_white"
+                android:text="@string/desc_grade_A"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/black_white"
+                android:layout_marginBottom="4dp"
+                android:text="@string/grade_b_light_green"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:justificationMode="inter_word"
+                android:layout_marginBottom="4dp"
+                android:textColor="@color/black_white"
+                android:text="@string/desc_grade_b"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/black_white"
+                android:layout_marginBottom="4dp"
+                android:text="@string/grade_c_yellow"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:justificationMode="inter_word"
+                android:layout_marginBottom="4dp"
+                android:textColor="@color/black_white"
+                android:text="@string/desc_grade_c"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/black_white"
+                android:layout_marginBottom="4dp"
+                android:text="@string/grade_d_orange"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:justificationMode="inter_word"
+                android:layout_marginBottom="4dp"
+                android:textColor="@color/black_white"
+                android:text="@string/desc_grade_d"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/black_white"
+                android:layout_marginBottom="4dp"
+                android:text="@string/grade_e_red"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:justificationMode="inter_word"
+                android:layout_marginBottom="4dp"
+                android:textColor="@color/black_white"
+                android:text="@string/desc_grade_e"/>
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+</ScrollView>

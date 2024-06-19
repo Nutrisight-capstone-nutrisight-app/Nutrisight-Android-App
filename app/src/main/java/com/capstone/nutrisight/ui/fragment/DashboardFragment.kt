@@ -23,8 +23,8 @@ class DashboardFragment : Fragment() {
     private var _binding: FragmentDashboardBinding? = null
     private lateinit var articleAdapter: ArticleAdapter
     private val binding get() = _binding!!
-    private lateinit var articleViewModelInstance: ArticleViewModel
-    private lateinit var userViewModelInstance: UserViewModel
+    private var articleViewModelInstance: ArticleViewModel? = null
+    private var userViewModelInstance: UserViewModel? = null
 
     fun setArticleViewModel(viewModel: ArticleViewModel) {
         articleViewModelInstance = viewModel
@@ -34,6 +34,28 @@ class DashboardFragment : Fragment() {
         userViewModelInstance = viewModel
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        articleViewModelInstance?.let { articleViewModel ->
+            if (articleViewModel.articlesItem.value.isNullOrEmpty()) {
+                articleViewModel.setArticlesItems("Healthy food", "en", NEWS_API_KEY)
+            }
+
+            articleViewModel.articlesItem.observe(viewLifecycleOwner) { items ->
+                if (items.isNullOrEmpty()) {
+                    binding.errorFetchArticle.visibility = View.VISIBLE
+                    binding.errorFetchArticle.text = getString(R.string.error_fetch_article)
+                } else {
+                    binding.errorFetchArticle.visibility = View.GONE
+                    setArticleData(items)
+                }
+            }
+
+            articleViewModel.isLoading.observe(viewLifecycleOwner) { showLoading(it) }
+
+
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,40 +65,26 @@ class DashboardFragment : Fragment() {
         val view = binding.root
 
         articleAdapter = ArticleAdapter()
-
         articleAdapter.setOnItemClickCallback(object : ArticleAdapter.OnItemClickCallback {
             override fun onItemClicked(news: ArticlesItem) {
                 showUrlArticle(news)
             }
         })
 
-        if (articleViewModelInstance.articlesItem.value.isNullOrEmpty()) {
-            articleViewModelInstance.setArticlesItems("Healthy food", "en", NEWS_API_KEY)
-        }
-
-
-        articleViewModelInstance.articlesItem.observe(viewLifecycleOwner) {items ->
-            if (items != null) {
-                setArticleData(items)
-            }
-
-        }
-
-        articleViewModelInstance.isLoading.observe(viewLifecycleOwner) {
-            showLoading(it)
-        }
 
 
         val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvArticle.layoutManager = layoutManager
+        binding.rvArticle.adapter = articleAdapter
 
-        userViewModelInstance.getUser()
-
-        userViewModelInstance.userResponse.observe(viewLifecycleOwner) { response ->
-            displayUser(response)
+        userViewModelInstance?.let { userViewModel ->
+            if (userViewModel.userResponse.value == null) {
+                userViewModel.getUser()
+            }
+            userViewModel.userResponse.observe(viewLifecycleOwner) { response ->
+                displayUser(response)
+            }
         }
-
-
 
         return view
     }
@@ -84,7 +92,6 @@ class DashboardFragment : Fragment() {
     private fun displayUser(response: UserResponse) {
         binding.usernameDashboard.text = response.user.username
 
-        // average grade dashboard
         val grade = response.data.gradeAvg
         val cardViewBackgroundColor = getBackgroundColorForGrade(grade)
         val textViewColor = getTextColorForGrade(grade)
@@ -92,7 +99,6 @@ class DashboardFragment : Fragment() {
         binding.gradeSavedFood.setTextColor(ContextCompat.getColor(requireContext(), textViewColor))
         binding.gradeSavedFood.text = grade
 
-        // total food & drink calories
         binding.totalCaloriesFoodDashboard.text = response.data.foodCal.toString()
         binding.totalCaloriesDrinkDashboard.text = response.data.drinkCal.toString()
     }
@@ -103,10 +109,10 @@ class DashboardFragment : Fragment() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        if (isLoading) {
-            binding.progressBarArticle.visibility = View.VISIBLE
+        binding.progressBarArticle.visibility = if (isLoading) {
+            View.VISIBLE
         } else {
-            binding.progressBarArticle.visibility = View.GONE
+            View.GONE
         }
     }
 
@@ -114,12 +120,10 @@ class DashboardFragment : Fragment() {
         val url = article.url
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(intent)
-
     }
 
     private fun setArticleData(article: List<ArticlesItem>) {
         articleAdapter.submitList(article)
-        binding.rvArticle.adapter = articleAdapter
     }
 
     private fun getBackgroundColorForGrade(grade: String?): Int {
@@ -143,5 +147,4 @@ class DashboardFragment : Fragment() {
             else -> com.google.android.material.R.color.design_default_color_background
         }
     }
-
 }

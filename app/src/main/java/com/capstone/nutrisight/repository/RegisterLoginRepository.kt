@@ -1,8 +1,15 @@
 package com.capstone.nutrisight.repository
 
 import com.capstone.nutrisight.data.api.service.RegisterLoginApiService
+import com.capstone.nutrisight.data.response.DetailResponse
 import com.capstone.nutrisight.data.response.LoginResponse
+import com.capstone.nutrisight.data.response.MessageResponse
+import com.capstone.nutrisight.data.response.ProductsOnSavesItem
 import com.capstone.nutrisight.data.response.RegisterDeleteResponse
+import com.capstone.nutrisight.data.response.SaveProductRequest
+import com.capstone.nutrisight.data.response.SaveResponse
+import com.capstone.nutrisight.data.response.SavedProductItem
+import com.capstone.nutrisight.data.response.SavedResponse
 import com.capstone.nutrisight.data.response.User
 import com.capstone.nutrisight.data.response.UserResponse
 import com.capstone.nutrisight.preferences.SettingsPreferences
@@ -39,15 +46,33 @@ class RegisterLoginRepository private constructor(
         }
     }
 
-    suspend fun updateUser(user: User): UserResponse {
+    suspend fun updateUser(email: String, username: String, password: String): MessageResponse {
         return withContext(Dispatchers.IO) {
-            registerLoginApiService.updateUser(user)
+            registerLoginApiService.updateUser(email, username, password)
         }
     }
 
-    suspend fun deleteUser(): UserResponse {
+    suspend fun deleteUser(): MessageResponse {
         return withContext(Dispatchers.IO) {
             registerLoginApiService.deleteUser()
+        }
+    }
+
+    suspend fun uploadSavedProduct(request: SaveProductRequest): SaveResponse {
+        return withContext(Dispatchers.IO) {
+            registerLoginApiService.saveProduct(request)
+        }
+    }
+
+    suspend fun getSavedProduct(): SavedResponse {
+        return withContext(Dispatchers.IO) {
+            registerLoginApiService.getSaved()
+        }
+    }
+
+    suspend fun getDetailProduct(id: String): DetailResponse {
+        return withContext(Dispatchers.IO) {
+            registerLoginApiService.getDetail(id)
         }
     }
 

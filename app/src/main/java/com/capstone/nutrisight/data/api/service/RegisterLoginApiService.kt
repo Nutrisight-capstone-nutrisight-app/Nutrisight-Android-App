@@ -1,7 +1,16 @@
 package com.capstone.nutrisight.data.api.service
 
+import com.capstone.nutrisight.data.response.ClassificationResponse
+import com.capstone.nutrisight.data.response.Data
+import com.capstone.nutrisight.data.response.DetailResponse
 import com.capstone.nutrisight.data.response.LoginResponse
+import com.capstone.nutrisight.data.response.MessageResponse
+import com.capstone.nutrisight.data.response.ProductsOnSavesItem
 import com.capstone.nutrisight.data.response.RegisterDeleteResponse
+import com.capstone.nutrisight.data.response.SaveProductRequest
+import com.capstone.nutrisight.data.response.SaveResponse
+import com.capstone.nutrisight.data.response.SavedProductItem
+import com.capstone.nutrisight.data.response.SavedResponse
 import com.capstone.nutrisight.data.response.User
 import com.capstone.nutrisight.data.response.UserResponse
 import retrofit2.http.Body
@@ -11,9 +20,11 @@ import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.PATCH
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface RegisterLoginApiService {
 
+    // User auth
     @FormUrlEncoded
     @POST("/register")
     suspend fun register(
@@ -32,15 +43,34 @@ interface RegisterLoginApiService {
     @DELETE("/logout")
     suspend fun logout(): RegisterDeleteResponse
 
+    // User configuration
     @GET("/user")
     suspend fun getUser(): UserResponse
 
+    @FormUrlEncoded
     @PATCH("/user")
     suspend fun updateUser(
-        @Body user: User
-    ): UserResponse
+        @Field("email") email: String,
+        @Field("username") username: String,
+        @Field("password") password: String
+    ): MessageResponse
 
     @DELETE("/user")
-    suspend fun deleteUser(): UserResponse
+    suspend fun deleteUser(): MessageResponse
+
+    // Save product
+    @POST("/save")
+    suspend fun saveProduct(
+        @Body request: SaveProductRequest
+    ): SaveResponse
+
+    @GET("/save")
+    suspend fun getSaved(): SavedResponse
+
+    @GET("/product/{id}")
+    suspend fun getDetail(
+        @Path("id") id: String
+    ): DetailResponse
+
 
 }

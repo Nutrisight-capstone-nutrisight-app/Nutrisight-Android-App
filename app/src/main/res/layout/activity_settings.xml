@@ -16,9 +16,9 @@
         android:contentDescription="@string/logo_of_arrow"
         android:src="@drawable/round_arrow_back_ios_24"
         android:backgroundTint="@android:color/transparent"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="48dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_settings"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_settings"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
@@ -40,8 +40,9 @@
         android:id="@+id/tv_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Profile"
-        android:layout_margin="32dp"
+        android:text="@string/text_profile"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
         android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@+id/tv_settings"
         app:layout_constraintStart_toStartOf="parent"/>
@@ -52,7 +53,8 @@
         android:layout_height="72dp"
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="16dp"
-
+        android:elevation="8dp"
+        app:strokeWidth="0dp"
         android:backgroundTint="@color/main_green"
         app:layout_constraintTop_toBottomOf="@+id/tv_profile"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,21 +72,24 @@
                 tools:text="Taffan"
                 android:textColor="@color/white"
                 android:layout_marginStart="32dp"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/logo_of_arrow"
                 app:icon="@drawable/round_keyboard_arrow_right_24"
                 app:iconSize="32dp"
+                app:iconTint="@color/white"
                 android:backgroundTint="@android:color/transparent"
                 android:layout_gravity="center"
                />
+
         </LinearLayout>
 
 
@@ -108,7 +113,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardCornerRadius="50dp"
-        android:layout_margin="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="@color/main_green_20"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_preferences">
@@ -220,9 +226,10 @@
         android:layout_height="wrap_content"
         android:padding="8dp"
         android:text="@string/logout"
+        android:textAlignment="viewStart"
         android:background="@android:color/transparent"
         android:textColor="@color/red"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="10dp"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/card_view_logout"
         app:layout_constraintTop_toTopOf="@+id/card_view_logout"

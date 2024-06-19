@@ -9,11 +9,11 @@ import kotlinx.parcelize.RawValue
 data class ClassificationResponse(
 
 	@field:SerializedName("product")
-	val product: Product
+	val product: ClassificationProduct
 ) : Parcelable
 
 @Parcelize
-data class Product(
+data class ClassificationProduct(
 
 	@field:SerializedName("sugarGrade")
 	val sugarGrade: String?,

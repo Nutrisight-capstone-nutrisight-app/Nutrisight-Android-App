@@ -19,25 +19,26 @@ class ArticleViewModel: ViewModel() {
     val articlesItem: LiveData<List<ArticlesItem>?> = _articlesItems
 
     fun setArticlesItems(query: String, language: String, apiKey: String) {
-        _isLoading.value = true
-        val client = ArticleApiConfig.getApiService().getArticles(query, language, apiKey)
-        client.enqueue(object : Callback<ArticleResponse> {
-            override fun onResponse(
-                call: Call<ArticleResponse>,
-                response: Response<ArticleResponse>
-            ) {
-                _isLoading.value = false
-                if (response.isSuccessful) {
-                    val article = response.body()?.articles
-                    _articlesItems.value = article
+        if (_articlesItems.value == null) {
+            _isLoading.value = true
+            val client = ArticleApiConfig.getApiService().getArticles(query, language, apiKey)
+            client.enqueue(object : Callback<ArticleResponse> {
+                override fun onResponse(
+                    call: Call<ArticleResponse>,
+                    response: Response<ArticleResponse>
+                ) {
+                    _isLoading.value = false
+                    if (response.isSuccessful) {
+                        val article = response.body()?.articles
+                        _articlesItems.value = article
+                    }
                 }
-            }
 
-            override fun onFailure(call: Call<ArticleResponse>, t: Throwable) {
-                _isLoading.value = false
-                Log.e("responseError", "onFailure: ${t.message}")
-            }
-
-        })
+                override fun onFailure(call: Call<ArticleResponse>, t: Throwable) {
+                    _isLoading.value = false
+                    Log.e("responseError", "onFailure: ${t.message}")
+                }
+            })
+        }
     }
 }

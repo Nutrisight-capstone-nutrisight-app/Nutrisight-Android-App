@@ -9,7 +9,9 @@ import com.capstone.nutrisight.preferences.SettingsPreferences
 import com.capstone.nutrisight.preferences.dataStore
 import com.capstone.nutrisight.repository.RegisterLoginRepository
 import com.capstone.nutrisight.ui.model.ArticleViewModel
+import com.capstone.nutrisight.ui.model.DetailViewModel
 import com.capstone.nutrisight.ui.model.LoginViewModel
+import com.capstone.nutrisight.ui.model.ProductViewModel
 import com.capstone.nutrisight.ui.model.RegisterViewModel
 import com.capstone.nutrisight.ui.model.SettingViewModel
 import com.capstone.nutrisight.ui.model.UserViewModel
@@ -31,6 +33,10 @@ class MainViewModelFactory(
                 RegisterViewModel(registerLoginRepository) as T
             } else if (modelClass.isAssignableFrom(UserViewModel::class.java)) {
                 UserViewModel(registerLoginRepository) as T
+            } else if(modelClass.isAssignableFrom(ProductViewModel::class.java)) {
+                ProductViewModel(registerLoginRepository) as T
+            } else if(modelClass.isAssignableFrom(DetailViewModel::class.java)) {
+                DetailViewModel(registerLoginRepository) as T
             } else {
                 throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
             }

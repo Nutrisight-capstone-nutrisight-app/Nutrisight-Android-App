@@ -17,15 +17,10 @@ import com.capstone.nutrisight.ui.model.UserViewModel
 class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
-    private lateinit var userViewModelInstance: UserViewModel
+    private var userViewModelInstance: UserViewModel? = null
 
     fun setUserViewModel(viewModel: UserViewModel) {
         userViewModelInstance = viewModel
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -36,14 +31,18 @@ class ProfileFragment : Fragment() {
         val view = binding.root
         binding.btnSettings.setOnClickListener {
             val intent = Intent(activity, SettingsActivity::class.java)
+            intent.putExtra("username", binding.username.text.toString())
+            intent.putExtra("email", binding.email.text.toString())
             startActivity(intent)
         }
 
-        userViewModelInstance.getUser()
-
-        userViewModelInstance.userResponse.observe(viewLifecycleOwner) { response ->
-            displayProfile(response)
-
+        userViewModelInstance?.let { viewModel ->
+            if (viewModel.userResponse.value == null) {
+                viewModel.getUser()
+            }
+            viewModel.userResponse.observe(viewLifecycleOwner) { response ->
+                displayProfile(response)
+            }
         }
 
         return view
@@ -57,15 +56,12 @@ class ProfileFragment : Fragment() {
         binding.totalCaloriesFood.text = response.data.foodCal.toString()
         binding.totalCaloriesDrink.text = response.data.drinkCal.toString()
 
-        // average grade profile
         val grade = response.data.gradeAvg
         val cardViewBackgroundColor = getBackgroundColorForGrade(grade)
         val textViewColor = getTextColorForGrade(grade)
         binding.cardViewGradeAverage.backgroundTintList = ContextCompat.getColorStateList(requireContext(), cardViewBackgroundColor)
         binding.gradeAverageFood.setTextColor(ContextCompat.getColor(requireContext(), textViewColor))
         binding.gradeAverageFood.text = grade
-
-
     }
 
     private fun getBackgroundColorForGrade(grade: String?): Int {
@@ -90,5 +86,8 @@ class ProfileFragment : Fragment() {
         }
     }
 
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

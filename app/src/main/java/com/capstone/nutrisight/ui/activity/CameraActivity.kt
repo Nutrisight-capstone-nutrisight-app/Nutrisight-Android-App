@@ -37,6 +37,7 @@ class CameraActivity : AppCompatActivity() {
     private val viewModel: ClassificationViewModel by viewModels {
         factory
     }
+    private var loadingDialog: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -199,19 +200,19 @@ class CameraActivity : AppCompatActivity() {
     }
 
     private fun showLoadingDialog() {
-        val dialog = Dialog(this)
-        dialog.setContentView(R.layout.dialog_loading)
-        dialog.setCancelable(false)
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        dialog.show()
+        if (loadingDialog == null) {
+            loadingDialog = Dialog(this).apply {
+                setContentView(R.layout.dialog_loading)
+                setCancelable(false)
+                window?.setBackgroundDrawableResource(android.R.color.transparent)
+            }
+        }
+        loadingDialog?.show()
     }
 
     private fun hideLoadingDialog() {
-        val dialog = Dialog(this)
-        dialog.setContentView(R.layout.dialog_loading)
-        dialog.setCancelable(false)
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        dialog.dismiss()
+        loadingDialog?.dismiss()
+        Toast.makeText(this, R.string.failed_to_upload_image_please_try_again, Toast.LENGTH_SHORT).show()
     }
 
     override fun onStart() {
