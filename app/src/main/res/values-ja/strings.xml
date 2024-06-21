@@ -41,7 +41,7 @@
     <string name="logo_of_arrow">矢印のロゴ</string>
     <string name="logout">ログアウト</string>
     <string name="start_scan_your_food_now">今すぐ食品のスキャンを開始！</string>
-    <string name="welcome">"ようこそ, "</string>
+    <string name="welcome">"ようこそ &#128075;, "</string>
     <string name="your_average">あなたの平均</string>
     <string name="articles">記事</string>
     <string name="recommended_food">おすすめの食品</string>
@@ -118,6 +118,16 @@
     <string name="edit_failed">編集に失敗しました。もう一度お試しください。</string>
     <string name="same_field">更新が必要です：情報を変更して続行してください。</string>
     <string name="text_profile">プロフィール</string>
+    <string name="list_group">\u25CF Yoga Ramadan (ML)\n\u25CF Muhammad Ardiansyah (ML)\n\u25CF Guntur Adi Wardana (ML)\n\u25CF Taffan Muhammad Rizqi (MD)\n\u25CF Alif Nur Samudra (MD)\n\u25CF Tsalisa Syifa Afia (CC)\n\u25CF Cakra Kusuma Erlangga Ramdani (CC)</string>
+    <string name="about">紹介</string>
+    <string name="introduction_app">NutriSightは、革新と栄養意識が融合したBangkitプログラムでの私たちの成果です。NutriSightアンドロイドアプリはオープンソースで、誰もが利用して共同で改善できることが明確です。私たちのアプリは、食品や飲料の製品をスキャンして栄養成分に基づいて評価することで、あなたに簡単に栄養の良い食事の選択をさせます。カロリーを追跡したり、食品の情報を把握したりする場合でも。</string>
+    <string name="text_intro_dev">NutriSightは、私たちの才能あるキャップストーングループの献身と専門知識によって実現しました：</string>
+    <string name="about_us">私たちについて！</string>
+    <string name="coming_soon">近日公開予定</string>
+    <string name="stay_tune_for_more_updates">さらなるアップデートをお楽しみに！</string>
+    <string name="total_calories_in_percent">総カロリーのパーセント</string>
+    <string name="no_data_available">データがありません</string>
+    <string name="other">その他</string>
 
 
 

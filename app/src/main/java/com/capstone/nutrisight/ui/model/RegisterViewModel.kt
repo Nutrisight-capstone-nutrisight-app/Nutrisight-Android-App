@@ -1,11 +1,9 @@
 package com.capstone.nutrisight.ui.model
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.capstone.nutrisight.R
 import com.capstone.nutrisight.data.response.RegisterDeleteResponse
 import com.capstone.nutrisight.repository.RegisterLoginRepository
 import kotlinx.coroutines.launch
@@ -28,9 +26,11 @@ class RegisterViewModel(
             try {
                 val response = registerLoginRepository.register(username, email, password)
                 _registerResponse.value = response
+                _isLoading.value = false
             } catch (e: Exception) {
                 val errorResponse = parseErrorResponse(e)
                 _registerResponse.value = RegisterDeleteResponse(message = null, error = errorResponse)
+                _isLoading.value = false
             } finally {
                 _isLoading.value = false
             }

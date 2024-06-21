@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.view.View
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.TextView
@@ -28,6 +27,7 @@ class LoginActivity : AppCompatActivity() {
     private val viewModel: LoginViewModel by viewModels {
         factory
     }
+    private var loadingDialog: Dialog? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -78,21 +78,20 @@ class LoginActivity : AppCompatActivity() {
         val passwordEmpty = binding.edtPassword.checkEditTextEmpty()
 
         if (!emailEmpty && !passwordEmpty) {
-            val emailValid = binding.edtEmail.error == null
-
+            val emailValid = binding.edtEmail.isValidEmail()
+            val passwordValid = binding.edtPassword.checkEditTextPassword()
             if (emailValid) {
-                val email = binding.edtEmail.text?.toString()?.trim() ?: ""
-                val password = binding.edtPassword.text?.toString()?.trim() ?: ""
-                viewModel.login(email, password)
-            } else {
-                if (!emailValid) {
-                    Toast.makeText(this, R.string.invalid_email, Toast.LENGTH_SHORT).show()
+                if (!passwordValid) {
+                    val email = binding.edtEmail.text?.toString()?.trim() ?: ""
+                    val password = binding.edtPassword.text?.toString()?.trim() ?: ""
+                    viewModel.login(email, password)
                 }
             }
         } else {
             Toast.makeText(this, R.string.empty_field, Toast.LENGTH_SHORT).show()
         }
     }
+
 
     private fun handleError(error: String) {
         when (error) {
@@ -121,26 +120,24 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun showLoadingDialog() {
-        val dialog = Dialog(this)
-        dialog.setContentView(R.layout.dialog_loading)
-        dialog.setCancelable(false)
-
-        dialog.show()
+        if (loadingDialog == null) {
+            loadingDialog = Dialog(this)
+            loadingDialog?.setContentView(R.layout.dialog_loading_login)
+            loadingDialog?.setCancelable(false)
+            loadingDialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        }
+        loadingDialog?.show()
     }
 
     private fun hideLoadingDialog() {
-        val dialog = Dialog(this)
-        dialog.setContentView(R.layout.dialog_loading)
-        dialog.setCancelable(false)
-
-        dialog.dismiss()
+        loadingDialog?.dismiss()
     }
 
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) {
-            binding.progressBar.visibility = View.VISIBLE
+            showLoadingDialog()
         } else {
-            binding.progressBar.visibility = View.GONE
+            hideLoadingDialog()
         }
     }
 }

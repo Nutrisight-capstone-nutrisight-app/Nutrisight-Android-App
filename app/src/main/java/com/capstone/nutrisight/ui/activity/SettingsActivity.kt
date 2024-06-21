@@ -1,8 +1,10 @@
 package com.capstone.nutrisight.ui.activity
 
 import android.app.Dialog
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
@@ -15,12 +17,13 @@ import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.lifecycleScope
 import com.capstone.nutrisight.R
 import com.capstone.nutrisight.databinding.ActivitySettingsBinding
+import com.capstone.nutrisight.databinding.DialogAboutBinding
 import com.capstone.nutrisight.databinding.DialogLanguageBinding
 import com.capstone.nutrisight.databinding.DialogLogoutBinding
 import com.capstone.nutrisight.preferences.SettingsPreferences
 import com.capstone.nutrisight.preferences.dataStore
-import com.capstone.nutrisight.ui.model.factory.MainViewModelFactory
 import com.capstone.nutrisight.ui.model.SettingViewModel
+import com.capstone.nutrisight.ui.model.factory.MainViewModelFactory
 import kotlinx.coroutines.launch
 import java.util.Locale
 
@@ -51,6 +54,10 @@ class SettingsActivity : AppCompatActivity() {
             showLanguageDialog()
         }
 
+        binding.btnInfo.setOnClickListener {
+            showInfoDialog()
+        }
+
         settingViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
             if (isDarkModeActive) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
@@ -68,6 +75,7 @@ class SettingsActivity : AppCompatActivity() {
         val username = intent.getStringExtra("username")
         val email = intent.getStringExtra("email")
         binding.usernameSettings.text = username
+        binding.emailSettings.text = email
 
         binding.cardSettingProfile.setOnClickListener {
             val intent = Intent(this@SettingsActivity, EditActivity::class.java)
@@ -171,6 +179,30 @@ class SettingsActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             AppCompatDelegate.setApplicationLocales(LocaleListCompat.create(locale))
         }
+    }
+
+    private fun showInfoDialog() {
+        val githubUrl = "https://github.com/Nutrisight-capstone-nutrisight-app"
+        val dialog = Dialog(this)
+        val binding: DialogAboutBinding = DialogAboutBinding.inflate(layoutInflater)
+        dialog.setContentView(binding.root)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.setCancelable(true)
+
+        binding.infoExit.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        binding.btnGithub.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(githubUrl))
+            try {
+                startActivity(intent)
+            } catch (e: ActivityNotFoundException) {
+                startActivity(intent)
+            }
+        }
+
+        dialog.show()
     }
 
     private fun onBackPressedCallback() {

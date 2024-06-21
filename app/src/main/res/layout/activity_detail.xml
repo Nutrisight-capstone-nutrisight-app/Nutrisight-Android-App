@@ -238,7 +238,7 @@
 
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     app:layout_constraintStart_toEndOf="@+id/img_card_result_food"
@@ -251,9 +251,8 @@
                         android:id="@+id/name_result_food"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:maxWidth="130dp"
                         tools:text="Indomie Goreng"
-                        android:textSize="32sp"
+                        android:textSize="28sp"
                         android:textStyle="bold"
                         android:textColor="@color/white"/>
 
@@ -272,11 +271,10 @@
 
                         <TextView
                             android:id="@+id/netto"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             tools:text="250ml"
                             android:layout_marginStart="8dp"
-                            android:gravity="center"
                             android:textSize="24sp"
                             android:textColor="@color/main_green_20"/>
 
@@ -464,16 +462,33 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/energy_fat"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:gravity="end"
-                android:textColor="@color/black_white"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                tools:text="45 kkal" />
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/energy_from_fat"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_white"
+                    android:layout_marginStart="12dp"/>
+
+                <TextView
+                    android:id="@+id/energy_fat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:gravity="end"
+                    android:textColor="@color/black_white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="45 kkal" />
+
+            </LinearLayout>
+
+
 
             <View
                 android:layout_width="match_parent"

@@ -97,9 +97,7 @@ class MainActivity : AppCompatActivity() {
         binding.navView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> loadFragment(DashboardFragment())
-                R.id.nav_profile -> loadFragment(ProfileFragment())
                 R.id.nav_saved -> loadFragment(SavedFragment())
-                R.id.nav_food -> loadFragment(FoodFragment())
             }
             true
         }

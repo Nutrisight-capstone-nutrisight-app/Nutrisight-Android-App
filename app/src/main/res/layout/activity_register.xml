@@ -109,7 +109,7 @@
             app:layout_constraintBottom_toTopOf="@+id/edt_password_register"
             />
 
-        <com.capstone.nutrisight.ui.custom.CustomEditTextEmpty
+        <com.capstone.nutrisight.ui.custom.CustomEditTextPassword
             android:id="@+id/edt_password_register"
             android:layout_width="0dp"
             android:layout_height="56dp"
@@ -120,6 +120,7 @@
             android:drawablePadding="8dp"
             android:paddingHorizontal="12dp"
             android:inputType="textPassword"
+            android:fontFamily="@font/josefin_sans"
             android:elevation="4dp"
             android:hint="@string/password"
             app:layout_constraintStart_toStartOf="parent"
@@ -141,7 +142,7 @@
             app:layout_constraintBottom_toTopOf="@+id/edt_confirm_password"
             />
 
-        <com.capstone.nutrisight.ui.custom.CustomEditTextEmpty
+        <com.capstone.nutrisight.ui.custom.CustomEditTextPassword
             android:id="@+id/edt_confirm_password"
             android:layout_width="0dp"
             android:layout_height="56dp"
@@ -153,6 +154,7 @@
             android:paddingHorizontal="12dp"
             android:inputType="textPassword"
             android:elevation="4dp"
+            android:fontFamily="@font/josefin_sans"
             android:hint="@string/confirm_password"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -3,13 +3,12 @@ package com.capstone.nutrisight.ui.fragment
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.nutrisight.data.response.ProductsOnSavesItem
-import com.capstone.nutrisight.data.response.SavedProductItem
 import com.capstone.nutrisight.databinding.FragmentSavedBinding
 import com.capstone.nutrisight.ui.activity.DetailActivity
 import com.capstone.nutrisight.ui.adapter.SavedAdapter

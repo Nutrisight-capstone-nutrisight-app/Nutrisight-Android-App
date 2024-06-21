@@ -2,32 +2,20 @@ package com.capstone.nutrisight.ui.activity
 
 import android.app.Dialog
 import android.content.Intent
-import android.content.Intent.EXTRA_EMAIL
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.capstone.nutrisight.R
-import com.capstone.nutrisight.data.response.UserResponse
 import com.capstone.nutrisight.databinding.ActivityEditBinding
 import com.capstone.nutrisight.databinding.DialogDeleteBinding
 import com.capstone.nutrisight.databinding.DialogEditFailedBinding
 import com.capstone.nutrisight.databinding.DialogEditSuccessBinding
-import com.capstone.nutrisight.databinding.DialogLogoutBinding
-import com.capstone.nutrisight.databinding.DialogRegisterFailedBinding
-import com.capstone.nutrisight.databinding.DialogRegisterSuccessBinding
-import com.capstone.nutrisight.ui.model.ProductViewModel
-import com.capstone.nutrisight.ui.model.SettingViewModel
 import com.capstone.nutrisight.ui.model.UserViewModel
 import com.capstone.nutrisight.ui.model.factory.MainViewModelFactory
 import kotlinx.coroutines.launch
@@ -78,19 +66,32 @@ class EditActivity : AppCompatActivity() {
             val username = binding.edtUsernameEdit.text.toString()
             val password = binding.edtPasswordEdit.text.toString()
 
-            if (email.isNotEmpty() && username.isNotEmpty() || password.isNotEmpty()) {
-                if (email != emailPreview || username != usernamePreview || password != "") {
-                    viewModel.updateUser(email, username, password)
-                } else {
-                    Toast.makeText(this, R.string.same_field, Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
-                }
-            } else {
+            if (email.isEmpty() || username.isEmpty()) {
                 Toast.makeText(this, R.string.empty_field, Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
+            val emailValid = binding.edtEmailEdit.isValidEmail()
+            val passwordValid = binding.edtPasswordEdit.checkEditTextPassword()
+
+            if (email == emailPreview && username == usernamePreview && password.isEmpty()) {
+                Toast.makeText(this, R.string.same_field, Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (!emailValid) {
+                Toast.makeText(this, R.string.invalid_email, Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (password.isNotEmpty() && passwordValid) {
+                Toast.makeText(this, R.string.invalid_password, Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            viewModel.updateUser(email, username, password)
         }
+
 
         binding.btnDeleteAccount.setOnClickListener {
             showDeleteDialog()

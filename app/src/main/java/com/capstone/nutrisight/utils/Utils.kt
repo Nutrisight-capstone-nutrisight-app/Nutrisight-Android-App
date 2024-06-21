@@ -1,6 +1,5 @@
 package com.capstone.nutrisight.utils
 
-import android.content.ContentValues
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory

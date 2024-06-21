@@ -71,6 +71,7 @@ dependencies {
     implementation(libs.play.services.base)
     implementation(libs.splashscreen)
     implementation(libs.lottie)
+    implementation(libs.chart)
     ksp(libs.room.compiler)
     implementation(libs.coroutines.core)
     implementation(libs.coroutines.android)

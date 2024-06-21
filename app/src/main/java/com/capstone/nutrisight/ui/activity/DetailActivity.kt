@@ -6,24 +6,18 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.capstone.nutrisight.R
-import com.capstone.nutrisight.data.response.ClassificationResponse
 import com.capstone.nutrisight.data.response.DetailResponse
 import com.capstone.nutrisight.databinding.ActivityDetailBinding
 import com.capstone.nutrisight.databinding.DialogInfoBinding
 import com.capstone.nutrisight.databinding.DialogInfoGradeBinding
 import com.capstone.nutrisight.ui.model.DetailViewModel
-import com.capstone.nutrisight.ui.model.ProductViewModel
 import com.capstone.nutrisight.ui.model.factory.MainViewModelFactory
 
 class DetailActivity : AppCompatActivity() {
@@ -105,16 +99,16 @@ class DetailActivity : AppCompatActivity() {
         binding.nameResultFood.text = response.product.name
         binding.categoryResultFood.text = response.product.category
         if (response.product.category == "Food") {
-            binding.netto.text = "${response.product.netWeight.toString()}g"
-            binding.servingSize.text = "${response.product.servingSize}g)"
+            binding.netto.text = "${response.product.netWeight}g"
+            binding.servingSize.text = "${response.product.servingSize}g"
         } else {
-            binding.netto.text = "${response.product.netWeight.toString()}ml"
-            binding.servingSize.text = "${response.product.servingSize}ml)"
+            binding.netto.text = "${response.product.netWeight}ml"
+            binding.servingSize.text = "${response.product.servingSize}ml"
         }
         binding.calResultFood.text = response.product.energyTotal.toString()
         binding.perServing.text = "${response.product.servingAmount} per serving"
-        binding.energy.text = "${response.product.energyTotal}Kj"
-        binding.energyFat.text = "${response.product.energyFat}kcal"
+        binding.energy.text = "${response.product.energyTotal}kCal"
+        binding.energyFat.text = "${response.product.energyFat}kCal"
         binding.fat.text = "${response.product.energyFat}g"
         binding.saturatedFat.text = "${response.product.saturatedFat}g"
         binding.protein.text = "${response.product.protein}g"

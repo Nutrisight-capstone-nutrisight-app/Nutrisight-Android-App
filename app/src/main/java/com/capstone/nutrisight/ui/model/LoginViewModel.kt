@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.capstone.nutrisight.R
 import com.capstone.nutrisight.data.response.LoginResponse
 import com.capstone.nutrisight.repository.RegisterLoginRepository
 import kotlinx.coroutines.launch
@@ -29,6 +28,7 @@ class LoginViewModel(private val registerLoginRepository: RegisterLoginRepositor
                 _loginResponse.value = response
             } catch (e: Exception) {
                 val errorResponse = parseErrorResponse(e)
+                _error.value = errorResponse
             } finally {
                 _isLoading.value = false
             }

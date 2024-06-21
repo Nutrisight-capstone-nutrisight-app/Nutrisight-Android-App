@@ -24,6 +24,7 @@ playServicesBase = "18.4.0"
 coroutines = "1.7.3"
 roomCompiler = "2.6.1"
 lottie = "6.4.1"
+androidChart = "3.1.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -53,6 +54,7 @@ coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-
 coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomCompiler" }
 lottie = { group ="com.airbnb.android", name="lottie", version.ref="lottie"}
+chart = {group = "com.github.PhilJay", name = "MPAndroidChart", version.ref = "androidChart"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

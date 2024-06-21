@@ -7,12 +7,15 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
 import com.capstone.nutrisight.R
 
-class CustomEditTextEmail @JvmOverloads constructor(
+
+class CustomEditTextPassword @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
-): AppCompatEditText(context, attrs), View.OnTouchListener {
+) : AppCompatEditText(context, attrs), View.OnTouchListener {
+
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
         return false
     }
+
 
     override fun onTextChanged(
         text: CharSequence?,
@@ -20,17 +23,12 @@ class CustomEditTextEmail @JvmOverloads constructor(
         lengthBefore: Int,
         lengthAfter: Int
     ) {
-        val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
-        if (!text.isNullOrEmpty() && !text.matches(emailPattern.toRegex())) {
-            setError(context.resources.getString(R.string.invalid_email), null)
-        } else {
-            error = null
-        }
+
     }
 
     fun checkEditTextEmpty(): Boolean {
         return if (text.isNullOrEmpty()) {
-            setError(context.resources.getString(R.string.must_fill), null)
+            setError("You must fill this field", null)
             true
         } else {
             error = null
@@ -38,9 +36,15 @@ class CustomEditTextEmail @JvmOverloads constructor(
         }
     }
 
-    fun isValidEmail(): Boolean {
-        val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
-        return !text.isNullOrEmpty() && text!!.matches(emailPattern.toRegex())
+    fun checkEditTextPassword(): Boolean {
+        return if (text.toString().length < 8) {
+            setError(context.getString(R.string.invalid_password), null)
+            true
+        } else {
+            error = null
+            false
+        }
     }
+
 
 }

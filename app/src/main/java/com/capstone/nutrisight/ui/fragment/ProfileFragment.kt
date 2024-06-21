@@ -52,16 +52,19 @@ class ProfileFragment : Fragment() {
         binding.email.text = response.user.email
         binding.username.text = response.user.username
 
-        binding.totalCalories.text = response.data.totalCal.toString()
-        binding.totalCaloriesFood.text = response.data.foodCal.toString()
-        binding.totalCaloriesDrink.text = response.data.drinkCal.toString()
+        binding.totalCalories.text = "${response.data.totalCal}kCal"
+        binding.totalCaloriesFood.text = "${response.data.foodCal}kCal"
+        binding.totalCaloriesDrink.text = "${response.data.drinkCal}kCal"
 
+        // average all grade
         val grade = response.data.gradeAvg
         val cardViewBackgroundColor = getBackgroundColorForGrade(grade)
         val textViewColor = getTextColorForGrade(grade)
         binding.cardViewGradeAverage.backgroundTintList = ContextCompat.getColorStateList(requireContext(), cardViewBackgroundColor)
         binding.gradeAverageFood.setTextColor(ContextCompat.getColor(requireContext(), textViewColor))
         binding.gradeAverageFood.text = grade
+
+
     }
 
     private fun getBackgroundColorForGrade(grade: String?): Int {

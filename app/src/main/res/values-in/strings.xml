@@ -26,7 +26,7 @@
     <string name="fourth_title">Antarmuka yang Sederhana dan Intuitif</string>
     <string name="saved_food">Makanan yang Disimpan</string>
     <string name="image_of_the_saved_food">Gambar makanan yang disimpan</string>
-    <string name="cal">Kal</string>
+    <string name="cal">kKal</string>
     <string name="your_food_grade_average">Rata-rata Nilai Makanan Anda</string>
     <string name="total_calories">Total kalori :</string>
     <string name="food">Makanan</string>
@@ -41,7 +41,7 @@
     <string name="logo_of_arrow">logo panah</string>
     <string name="logout">Keluar</string>
     <string name="start_scan_your_food_now">Mulai scan makanan Anda sekarang!</string>
-    <string name="welcome">"Selamat Datang, "</string>
+    <string name="welcome">"Selamat Datang &#128075;, "</string>
     <string name="your_average">Rata-rata Anda</string>
     <string name="articles">Artikel</string>
     <string name="recommended_food">Makanan yang Direkomendasikan</string>
@@ -118,6 +118,16 @@
     <string name="edit_failed">Gagal mengedit, silakan coba lagi</string>
     <string name="same_field">Pembaruan diperlukan: Silakan ubah informasi Anda untuk melanjutkan.</string>
     <string name="text_profile">Profil</string>
+    <string name="list_group">\u25CF Yoga Ramadan (ML)\n\u25CF Muhammad Ardiansyah (ML)\n\u25CF Guntur Adi Wardana (ML)\n\u25CF Taffan Muhammad Rizqi (MD)\n\u25CF Alif Nur Samudra (MD)\n\u25CF Tsalisa Syifa Afia (CC)\n\u25CF Cakra Kusuma Erlangga Ramdani (CC)</string>
+    <string name="about">Tentang</string>
+    <string name="introduction_app">NutriSight adalah hasil dari perjalanan kami di program Bangkit, di mana inovasi bertemu kesadaran nutrisi. Aplikasi NutriSight untuk Android adalah <i>open source</i>, sehingga jelas bahwa semua orang dapat mengaksesnya dan meningkatkannya bersama-sama. Aplikasi kami memberdayakan Anda untuk membuat pilihan makanan yang berinformasi dengan mudah dengan memindai produk makanan dan minuman serta memberi nilai berdasarkan fakta gizi mereka. Baik Anda sedang melacak kalori atau informasi produk makanan.</string>
+    <string name="text_intro_dev">NutriSight menjadi kenyataan berkat dedikasi dan keahlian dari kelompok capstone kami yang berbakat:</string>
+    <string name="about_us">Tentang Kami!</string>
+    <string name="coming_soon">Akan Segera Hadir</string>
+    <string name="stay_tune_for_more_updates">Tetap Ikuti Untuk Pembaruan Lebih Lanjut!</string>
+    <string name="total_calories_in_percent">Total Kalori Dalam Persen</string>
+    <string name="no_data_available">Tidak Ada Data Tersedia</string>
+    <string name="other">Lainnya</string>
 
 
 

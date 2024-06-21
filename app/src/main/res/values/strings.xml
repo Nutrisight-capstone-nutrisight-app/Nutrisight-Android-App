@@ -26,7 +26,7 @@
     <string name="fourth_title">Simple and Intuitive Interface</string>
     <string name="saved_food">Saved Food</string>
     <string name="image_of_the_saved_food">Image of the saved food</string>
-    <string name="cal">Cal</string>
+    <string name="cal">kCal</string>
     <string name="your_food_grade_average">Your Food Grade Average</string>
     <string name="total_calories">Total calories :</string>
     <string name="food">Food</string>
@@ -41,7 +41,7 @@
     <string name="logo_of_arrow">logo of arrow</string>
     <string name="logout">Log Out</string>
     <string name="start_scan_your_food_now">Start scan your food now!</string>
-    <string name="welcome">"Welcome, "</string>
+    <string name="welcome">"Welcome &#128075;, "</string>
     <string name="your_average">Your Average</string>
     <string name="articles">Articles</string>
     <string name="recommended_food">Recommended Food</string>
@@ -123,5 +123,18 @@
     <string name="edit_failed">Edit failed, please try again</string>
     <string name="same_field">Update required: Please modify your information to proceed.</string>
     <string name="text_profile">Profile</string>
+    <string name="about">About</string>
+    <string name="introduction_app">NutriSight is the culmination of our journey in the Bangkit program, where innovation meets nutritional awareness. NutriSight Android app is open source, making it clear that it\'s accessible for everyone to use and improve together. Our app empowers you to make informed dietary choices effortlessly by scanning food and drink products and grading them based on their nutrition facts. Whether you\'re tracking calories or information of food products.</string>
+    <string name="text_intro_dev">NutriSight was made possible by the dedication and expertise of our talented capstone group:</string>
+    <string name="about_us">About Us!</string>
+    <string name="list_group">\u25CF Yoga Ramadan (ML)\n\u25CF Muhammad Ardiansyah (ML)\n\u25CF Guntur Adi Wardana (ML)\n\u25CF Taffan Muhammad Rizqi (MD)\n\u25CF Alif Nur Samudra (MD)\n\u25CF Tsalisa Syifa Afia (CC)\n\u25CF Cakra Kusuma Erlangga Ramdani (CC)</string>
+    <string name="github" translatable="false">GitHub</string>
+    <string name="invalid_password" translatable="false">Password must be at least 8 characters</string>
+    <string name="coming_soon">Coming Soon</string>
+    <string name="stay_tune_for_more_updates">Stay tune for more updates!</string>
+    <string name="total_calories_in_percent">Total Calories In Percent</string>
+    <string name="no_data_available">No Data Availaible</string>
+    <string name="other">Other</string>
+    <string name="energy_from_fat">Energy From Fat</string>
 
 </resources>

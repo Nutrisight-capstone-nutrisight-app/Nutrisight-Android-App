@@ -15,6 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/welcome"
+            tools:text="Selamat Datang &#128075;, "
             android:textColor="@color/grey_text"
             android:layout_marginStart="32dp"
             android:layout_marginTop="56dp"
@@ -37,7 +38,7 @@
 
         <TextView
             android:id="@+id/tv_start_user"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/start_scan_your_food_now"
             android:layout_marginTop="8dp"
@@ -46,6 +47,21 @@
             card_view:layout_constraintTop_toBottomOf="@+id/username_dashboard"
             card_view:layout_constraintStart_toStartOf="parent"
             />
+
+        <ImageButton
+            android:id="@+id/btn_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/settings_button"
+            android:src="@drawable/round_settings_24"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toTopOf="@+id/welcome_dashboard"
+            card_view:layout_constraintBottom_toBottomOf="@+id/welcome_dashboard"
+            />
+
+
 
         <TextView
             android:id="@+id/tv_your_average"
@@ -170,16 +186,28 @@
 
         </androidx.cardview.widget.CardView>
 
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pie_chart"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:layout_marginTop="8dp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/card_view_average_dashboard"/>
+
+
         <TextView
             android:id="@+id/tv_article"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/articles"
-            android:layout_margin="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
             android:textStyle="bold"
             android:textSize="16sp"
             android:textColor="@color/black_white"
-            card_view:layout_constraintTop_toBottomOf="@+id/card_view_average_dashboard"
+            card_view:layout_constraintTop_toBottomOf="@+id/pie_chart"
             card_view:layout_constraintStart_toStartOf="parent"/>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -188,8 +216,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="96dp"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_article"
             card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintBottom_toBottomOf="parent"
             />
         
         <TextView
@@ -210,8 +240,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            card_view:layout_constraintTop_toTopOf="@+id/rv_article"
-            card_view:layout_constraintBottom_toBottomOf="@+id/rv_article"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_article"
+            card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"/>
 

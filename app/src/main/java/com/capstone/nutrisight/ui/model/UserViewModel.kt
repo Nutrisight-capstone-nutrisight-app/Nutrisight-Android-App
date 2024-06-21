@@ -6,12 +6,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.capstone.nutrisight.data.response.MessageResponse
 import com.capstone.nutrisight.data.response.UserResponse
+import com.capstone.nutrisight.preferences.SettingsPreferences
 import com.capstone.nutrisight.repository.RegisterLoginRepository
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 import retrofit2.HttpException
 
-class UserViewModel(private val registerLoginRepository: RegisterLoginRepository): ViewModel() {
+class UserViewModel(private val pref: SettingsPreferences, private val registerLoginRepository: RegisterLoginRepository): ViewModel() {
     private val _userResponse = MutableLiveData<UserResponse>()
     val userResponse: LiveData<UserResponse> = _userResponse
 
@@ -54,6 +55,7 @@ class UserViewModel(private val registerLoginRepository: RegisterLoginRepository
             try {
                 val response = registerLoginRepository.deleteUser()
                 _message.value = response
+                pref.clearPreferences()
             } catch (e: Exception) {
                 _isLoading.value = false
                 parseErrorResponse(e)

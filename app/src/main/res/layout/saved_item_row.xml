@@ -63,7 +63,7 @@
                 tools:text="Food name"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:maxWidth="96dp"
+                android:maxWidth="100dp"
                 card_view:layout_constraintTop_toTopOf="parent"
                 card_view:layout_constraintStart_toStartOf="parent"
                 />

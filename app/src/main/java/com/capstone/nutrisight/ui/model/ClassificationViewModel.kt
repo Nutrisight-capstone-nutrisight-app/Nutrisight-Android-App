@@ -10,7 +10,6 @@ import com.capstone.nutrisight.repository.ClassificationRepository
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeout
 import okhttp3.MultipartBody
-import java.io.File
 import java.io.IOException
 import java.net.SocketTimeoutException
 

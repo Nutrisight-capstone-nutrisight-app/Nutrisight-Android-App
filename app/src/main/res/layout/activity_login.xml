@@ -52,7 +52,7 @@
         android:background="@drawable/custom_loginedttext"
         app:layout_constraintBottom_toTopOf="@+id/edt_password"/>
 
-    <com.capstone.nutrisight.ui.custom.CustomEditTextEmpty
+    <com.capstone.nutrisight.ui.custom.CustomEditTextPassword
         android:id="@+id/edt_password"
         android:layout_width="0dp"
         android:layout_height="56dp"

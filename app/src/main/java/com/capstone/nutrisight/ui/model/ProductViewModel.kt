@@ -4,12 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.capstone.nutrisight.data.response.Product
 import com.capstone.nutrisight.data.response.ProductsOnSavesItem
 import com.capstone.nutrisight.data.response.SaveProductRequest
 import com.capstone.nutrisight.data.response.SaveResponse
-import com.capstone.nutrisight.data.response.SavedProductItem
-import com.capstone.nutrisight.data.response.SavedResponse
 import com.capstone.nutrisight.repository.RegisterLoginRepository
 import kotlinx.coroutines.launch
 

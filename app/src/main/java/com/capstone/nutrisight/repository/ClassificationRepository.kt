@@ -9,11 +9,6 @@ import okhttp3.MultipartBody
 class ClassificationRepository private constructor(
     private val classificationApiService: ClassificationApiService
 ){
-    suspend fun classification(): ClassificationResponse {
-        return withContext(Dispatchers.IO) {
-            classificationApiService.getClassification()
-        }
-    }
 
     suspend fun upload(image: MultipartBody.Part): ClassificationResponse {
         return withContext(Dispatchers.IO) {

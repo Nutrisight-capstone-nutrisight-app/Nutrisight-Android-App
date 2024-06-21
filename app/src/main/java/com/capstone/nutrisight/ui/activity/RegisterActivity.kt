@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
@@ -15,12 +14,13 @@ import com.capstone.nutrisight.R
 import com.capstone.nutrisight.databinding.ActivityRegisterBinding
 import com.capstone.nutrisight.databinding.DialogRegisterFailedBinding
 import com.capstone.nutrisight.databinding.DialogRegisterSuccessBinding
-import com.capstone.nutrisight.ui.model.factory.MainViewModelFactory
 import com.capstone.nutrisight.ui.model.RegisterViewModel
+import com.capstone.nutrisight.ui.model.factory.MainViewModelFactory
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var registerViewModel: RegisterViewModel
+    private var loadingDialog: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,10 +74,20 @@ class RegisterActivity : AppCompatActivity() {
         val confirmPassword = binding.edtConfirmPassword.text.toString().trim()
 
         if (!usernameEmpty && !emailEmpty && !passwordEmpty && !confirmPasswordEmpty) {
-            if (password == confirmPassword) {
-                registerViewModel.register(username, email, password)
+            val emailValid = binding.edtEmailRegister.isValidEmail()
+            val passwordValid = binding.edtPasswordRegister.checkEditTextPassword()
+            if (emailValid) {
+                if (!passwordValid) {
+                    if (password == confirmPassword) {
+                        registerViewModel.register(username, email, password)
+                    } else {
+                        Toast.makeText(this, R.string.password_not_match, Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Toast.makeText(this, R.string.invalid_password, Toast.LENGTH_SHORT).show()
+                }
             } else {
-                Toast.makeText(this, R.string.password_not_match, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.invalid_email, Toast.LENGTH_SHORT).show()
             }
         } else {
             Toast.makeText(this, R.string.empty_field, Toast.LENGTH_SHORT).show()
@@ -88,9 +98,11 @@ class RegisterActivity : AppCompatActivity() {
         when (error) {
             "Email or username already exist" -> {
                 showFailedDialog(error)
+                showLoading(false)
             }
             else -> {
                 showFailedDialog(error)
+                showLoading(false)
             }
         }
     }
@@ -128,11 +140,25 @@ class RegisterActivity : AppCompatActivity() {
         dialog.show()
     }
 
+    private fun showLoadingDialog() {
+        if (loadingDialog == null) {
+            loadingDialog = Dialog(this)
+            loadingDialog?.setContentView(R.layout.dialog_loading_login)
+            loadingDialog?.setCancelable(false)
+            loadingDialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        }
+        loadingDialog?.show()
+    }
+
+    private fun hideLoadingDialog() {
+        loadingDialog?.dismiss()
+    }
+
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) {
-            binding.progressBar.visibility = View.VISIBLE
+            showLoadingDialog()
         } else {
-            binding.progressBar.visibility = View.GONE
+            hideLoadingDialog()
         }
     }
 

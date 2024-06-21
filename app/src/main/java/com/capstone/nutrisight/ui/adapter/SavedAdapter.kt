@@ -1,6 +1,5 @@
 package com.capstone.nutrisight.ui.adapter
 
-import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,13 +9,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.capstone.nutrisight.R
-import com.capstone.nutrisight.data.response.Product
 import com.capstone.nutrisight.data.response.ProductsOnSavesItem
-import com.capstone.nutrisight.data.response.SavedProductItem
 import com.capstone.nutrisight.databinding.SavedItemRowBinding
-import java.text.SimpleDateFormat
-import java.util.Locale
-import java.util.TimeZone
 
 class SavedAdapter: ListAdapter<ProductsOnSavesItem, SavedAdapter.ProductViewHolder>(DIFF_CALLBACK) {
     private lateinit var onItemClickCallback: OnItemClickCallback

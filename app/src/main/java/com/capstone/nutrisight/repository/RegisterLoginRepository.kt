@@ -4,13 +4,10 @@ import com.capstone.nutrisight.data.api.service.RegisterLoginApiService
 import com.capstone.nutrisight.data.response.DetailResponse
 import com.capstone.nutrisight.data.response.LoginResponse
 import com.capstone.nutrisight.data.response.MessageResponse
-import com.capstone.nutrisight.data.response.ProductsOnSavesItem
 import com.capstone.nutrisight.data.response.RegisterDeleteResponse
 import com.capstone.nutrisight.data.response.SaveProductRequest
 import com.capstone.nutrisight.data.response.SaveResponse
-import com.capstone.nutrisight.data.response.SavedProductItem
 import com.capstone.nutrisight.data.response.SavedResponse
-import com.capstone.nutrisight.data.response.User
 import com.capstone.nutrisight.data.response.UserResponse
 import com.capstone.nutrisight.preferences.SettingsPreferences
 import kotlinx.coroutines.Dispatchers

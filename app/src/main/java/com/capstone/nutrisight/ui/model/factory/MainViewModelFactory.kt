@@ -32,7 +32,7 @@ class MainViewModelFactory(
             } else if (modelClass.isAssignableFrom(RegisterViewModel::class.java)){
                 RegisterViewModel(registerLoginRepository) as T
             } else if (modelClass.isAssignableFrom(UserViewModel::class.java)) {
-                UserViewModel(registerLoginRepository) as T
+                UserViewModel(pref, registerLoginRepository) as T
             } else if(modelClass.isAssignableFrom(ProductViewModel::class.java)) {
                 ProductViewModel(registerLoginRepository) as T
             } else if(modelClass.isAssignableFrom(DetailViewModel::class.java)) {

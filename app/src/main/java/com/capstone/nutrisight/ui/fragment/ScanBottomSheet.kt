@@ -2,13 +2,11 @@ package com.capstone.nutrisight.ui.fragment
 
 import android.Manifest
 import android.app.Dialog
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,10 +21,6 @@ import com.capstone.nutrisight.ui.activity.CameraActivity
 import com.capstone.nutrisight.ui.activity.MainActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
-import java.io.File
 
 
 class ScanBottomSheet : BottomSheetDialogFragment() {

@@ -12,7 +12,6 @@ import com.capstone.nutrisight.preferences.SettingsPreferences.PreferencesKeys.L
 import com.capstone.nutrisight.preferences.SettingsPreferences.PreferencesKeys.THEME_KEY
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import java.util.Locale
 import kotlin.concurrent.Volatile
 
 
