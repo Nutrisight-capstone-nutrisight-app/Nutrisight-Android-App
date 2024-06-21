@@ -14,8 +14,6 @@ import androidx.fragment.app.Fragment
 import com.capstone.nutrisight.R
 import com.capstone.nutrisight.databinding.ActivityMainBinding
 import com.capstone.nutrisight.ui.fragment.DashboardFragment
-import com.capstone.nutrisight.ui.fragment.FoodFragment
-import com.capstone.nutrisight.ui.fragment.ProfileFragment
 import com.capstone.nutrisight.ui.fragment.SavedFragment
 import com.capstone.nutrisight.ui.fragment.ScanBottomSheet
 import com.capstone.nutrisight.ui.model.ArticleViewModel
@@ -118,11 +116,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            is ProfileFragment -> {
-                fragment.apply {
-                    setUserViewModel(userViewModel)
-                }
-            }
 
             is SavedFragment -> {
                 fragment.apply {
